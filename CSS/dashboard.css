@@ -1,0 +1,79 @@
+/* ---------------------------------------------------
+   SCORE CARD — Dashboard-only link
+   (the "See Score Breakdown" link is only shown on the
+   Dashboard's score card, not on the Score Breakdown page)
+--------------------------------------------------- */
+.score-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  width: fit-content;
+  transition: gap 0.15s ease;
+}
+
+.score-link:hover { gap: 8px; }
+.score-link svg { width: 14px; height: 14px; }
+
+/* ---------------------------------------------------
+   STAT CARDS
+--------------------------------------------------- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 24px 24px 26px;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.stat-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.stat-label {
+  font-size: 12.5px;
+  color: var(--body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.stat-delta {
+  font-size: 13px;
+  color: var(--body);
+}
+
+.stat-delta.positive { color: var(--success); }
+.stat-delta.warning { color: #B08954; }
+
+/* ---------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------- */
+@media (max-width: 900px) {
+  .stat-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-card { transition: none; }
+}

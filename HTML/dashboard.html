@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrackHire — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../CSS/style.css">
+<link rel="stylesheet" href="../CSS/dashboard.css">
+
+
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 12L10 18L20 6" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="brand-name">TrackHire</span>
+    </div>
+
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-item active" href="#" aria-current="page">Dashboard</a>
+      <a class="nav-item" href="#">Pipeline</a>
+      <a class="nav-item" href="#">Feedback</a>
+      <a class="nav-item" href="#">Reports</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span class="avatar">SA</span>
+      <div class="sidebar-footer-text">
+        <div class="sidebar-footer-name">Startup A</div>
+        <div class="sidebar-footer-role">Talent Team</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-subtitle">Welcome back, Startup A</p>
+      </div>
+      <button class="btn-primary" type="button">
+        View Pipeline
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- HIRING SCORE — typography led -->
+    <section class="score-card" aria-label="Hiring score">
+      <div class="score-primary">
+        <div class="score-eyebrow">Hiring Score</div>
+        <p class="score-number">87</p>
+        <span class="score-badge">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M6 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Above Program Average
+        </span>
+      </div>
+
+      <div class="score-divider"></div>
+
+      <div class="score-meta">
+        <dl class="score-stat-row">
+          <div class="score-stat">
+            <dt>Program average</dt>
+            <dd>79</dd>
+          </div>
+          <div class="score-stat">
+            <dt>Ranking</dt>
+            <dd>#4</dd>
+          </div>
+        </dl>
+
+        <a class="score-link" href="../HTML/score.html">
+          See Score Breakdown
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- SMALL STAT CARDS -->
+    <section class="stat-grid" aria-label="Hiring statistics">
+
+      <article class="stat-card">
+        <div class="stat-label">Active Candidates</div>
+        <div class="stat-value">128</div>
+        <div class="stat-delta positive">+8 since last week</div>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-label">Pending Feedback</div>
+        <div class="stat-value">12</div>
+        <div class="stat-delta warning">3 waiting over 48h</div>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-label">Average Response Time</div>
+        <div class="stat-value">1.4 days</div>
+        <div class="stat-delta positive">0.3 days faster than average</div>
+      </article>
+
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>

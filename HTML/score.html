@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrackHire — Hiring Score Breakdown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../CSS/style.css">\
+<link rel="stylesheet" href="../CSS/score.css">
+
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 12L10 18L20 6" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="brand-name">TrackHire</span>
+    </div>
+
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-item active" href="#" aria-current="page">Dashboard</a>
+      <a class="nav-item" href="#">Pipeline</a>
+      <a class="nav-item" href="#">Feedback</a>
+      <a class="nav-item" href="#">Reports</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span class="avatar">SA</span>
+      <div class="sidebar-footer-text">
+        <div class="sidebar-footer-name">Startup A</div>
+        <div class="sidebar-footer-role">Talent Team</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <a class="breadcrumb" href="../HTML/dashboard.html">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to Dashboard
+    </a>
+
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Hiring Score Breakdown</h1>
+        <p class="page-subtitle">Understand how your Hiring Score is calculated.</p>
+      </div>
+      <button class="btn-primary" type="button">
+        View Pipeline
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- HIRING SCORE -->
+    <section class="score-card" aria-label="Hiring score">
+      <div class="score-primary">
+        <div class="score-eyebrow">Hiring Score</div>
+        <p class="score-number">87</p>
+        <span class="score-badge">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M6 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Above Program Average
+        </span>
+      </div>
+
+      <div class="score-divider"></div>
+
+      <div class="score-meta">
+        <dl class="score-stat-row">
+          <div class="score-stat">
+            <dt>Last updated</dt>
+            <dd>Today</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- SCORE BREAKDOWN -->
+    <section class="section" aria-label="Score breakdown">
+      <h2 class="section-title">Score Breakdown</h2>
+
+      <div class="breakdown-list">
+        <article class="breakdown-row">
+          <div class="breakdown-info">
+            <h3 class="breakdown-name">Response Time</h3>
+            <p class="breakdown-desc">Average response time to candidates.</p>
+          </div>
+          <div class="breakdown-score">92<span>/100</span></div>
+        </article>
+
+        <article class="breakdown-row">
+          <div class="breakdown-info">
+            <h3 class="breakdown-name">Interview Feedback</h3>
+            <p class="breakdown-desc">Percentage of completed interview feedback.</p>
+          </div>
+          <div class="breakdown-score">80<span>/100</span></div>
+        </article>
+
+        <article class="breakdown-row">
+          <div class="breakdown-info">
+            <h3 class="breakdown-name">Offer &amp; Onboarding</h3>
+            <p class="breakdown-desc">Offer acceptance and onboarding completion.</p>
+          </div>
+          <div class="breakdown-score">89<span>/100</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- AI RECOMMENDATIONS -->
+    <section class="section" aria-label="AI recommendations">
+      <h2 class="section-title">AI Recommendations</h2>
+
+      <div class="rec-list">
+        <div class="rec-card">
+          <p class="rec-text">Complete 3 pending interview feedback forms.</p>
+        </div>
+
+        <div class="rec-card">
+
+          <p class="rec-text">Respond to candidate Sarah Ahmed within 24 hours.</p>
+        </div>
+
+        <div class="rec-card highlight">
+
+          <p class="rec-text">Completing these actions may improve your Hiring Score by approximately 4 points.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>

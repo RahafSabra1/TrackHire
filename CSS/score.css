@@ -1,0 +1,73 @@
+/* ---------------------------------------------------
+   ICON SIZING (breadcrumb + recommendation icons)
+--------------------------------------------------- */
+
+/* ---------------------------------------------------
+   SECTION HEADINGS
+--------------------------------------------------- */
+.section {
+  margin-top: 40px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.breakdown-list,
+.rec-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------------------------------------------------
+   SCORE BREAKDOWN ROWS
+--------------------------------------------------- */
+.breakdown-row,
+.rec-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.breakdown-info {
+  flex: 1;
+}
+
+.breakdown-name {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.breakdown-desc {
+  margin: 0;
+  color: var(--body);
+}
+
+.breakdown-score {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------
+   AI RECOMMENDATIONS
+--------------------------------------------------- */
+
+
+.rec-text {
+  flex: 1;
+  margin: 0;
+}
+
+.highlight {
+  background: var(--primary-tint);
+  border-color: var(--primary-tint);
+}

@@ -1,0 +1,358 @@
+/* ---------------------------------------------------
+   TOKENS
+--------------------------------------------------- */
+:root {
+  --bg: #FAF8F5;
+  --sidebar: #FFFFFF;
+  --card: #FFFFFF;
+
+  --primary: #5B5BD6;
+  --primary-hover: #4C4CC7;
+  --primary-tint: #EFEFFB;
+
+  --title: #2B2B2B;
+  --body: #6B7280;
+  --border: #ECE7E1;
+
+  --success-bg: #EAF7EF;
+  --success: #2E7D32;
+
+  --radius-lg: 20px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+
+  --shadow-card: 0 1px 2px rgba(43, 43, 43, 0.03), 0 8px 24px rgba(43, 43, 43, 0.05);
+  --shadow-card-hover: 0 2px 4px rgba(43, 43, 43, 0.04), 0 12px 30px rgba(43, 43, 43, 0.07);
+
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Inter Tight", "Inter", -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--title);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------------------------------------------------
+   LAYOUT SHELL
+--------------------------------------------------- */
+.shell {
+  display: grid;
+  grid-template-columns: 216px 1fr;
+  min-height: 100vh;
+}
+
+/* ---------------------------------------------------
+   SIDEBAR
+--------------------------------------------------- */
+.sidebar {
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 28px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+}
+
+.brand-mark {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-mark svg { width: 14px; height: 14px; }
+
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  color: var(--title);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.nav-item {
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--body);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.nav-item:hover {
+  background: #F5F4F1;
+  color: var(--title);
+}
+
+.nav-item.active {
+  background: var(--primary-tint);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 8px 0;
+  border-top: 1px solid var(--border);
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--primary-tint);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.sidebar-footer-text { line-height: 1.25; }
+.sidebar-footer-name { font-size: 13px; font-weight: 600; }
+.sidebar-footer-role { font-size: 12px; color: var(--body); }
+
+/* ---------------------------------------------------
+   MAIN CONTENT (shared shell used on every page)
+--------------------------------------------------- */
+.main {
+  padding: 56px 64px 64px;
+  max-width: 1080px;
+  width: 100%;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 6px;
+}
+
+.page-subtitle {
+  font-size: 15px;
+  color: var(--body);
+  margin: 0;
+}
+
+/* ---------------------------------------------------
+   BUTTONS (shared)
+--------------------------------------------------- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(43, 43, 43, 0.06), 0 6px 16px rgba(91, 91, 214, 0.22);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 2px 4px rgba(43, 43, 43, 0.07), 0 8px 20px rgba(91, 91, 214, 0.28);
+  transform: translateY(-1px);
+}
+
+/* ---------------------------------------------------
+   HIRING SCORE CARD — shared (appears on Dashboard and
+   Score Breakdown pages); typography-led, no ring
+--------------------------------------------------- */
+.score-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 48px 52px;
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  margin-bottom: 24px;
+}
+
+.score-primary {
+  flex-shrink: 0;
+}
+
+.score-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--body);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+
+.score-number {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 88px;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  margin: 0 0 18px;
+}
+
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--success-bg);
+  color: var(--success);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.score-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.score-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.score-stat-row {
+  display: flex;
+  gap: 48px;
+  margin: 0;
+}
+
+.score-stat dt {
+  font-size: 12.5px;
+  color: var(--body);
+  margin-bottom: 6px;
+}
+
+.score-stat dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  color: var(--title);
+}
+
+/* ---------------------------------------------------
+   RESPONSIVE (shared layout/shell/score-card rules)
+--------------------------------------------------- */
+@media (max-width: 900px) {
+  .score-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    padding: 36px;
+  }
+  .score-divider {
+    width: 100%;
+    height: 1px;
+  }
+  .score-stat-row { gap: 40px; }
+  .main { padding: 40px 28px 48px; }
+  .score-number { font-size: 72px; }
+}
+
+@media (max-width: 720px) {
+  .shell { grid-template-columns: 1fr; }
+  .sidebar {
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    gap: 20px;
+    overflow-x: auto;
+  }
+  .nav { flex-direction: row; }
+  .sidebar-footer { display: none; }
+  .page-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .btn-primary { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary { transition: none; }
+}
+
+/* ---------------------------------------------------
+   SHARED SVG SIZING
+--------------------------------------------------- */
+svg {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.brand-mark svg {
+  width: 14px;
+  height: 14px;
+}
+
+.btn-primary svg,
+.score-badge svg {
+  width: 16px;
+  height: 16px;
+}
