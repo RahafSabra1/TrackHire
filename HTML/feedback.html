@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrackHire — Feedback</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../CSS/style.css">
+<link rel="stylesheet" href="../CSS/feedback.css">
+
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 12L10 18L20 6" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="brand-name">TrackHire</span>
+    </div>
+
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-item" href="dashboard.html">Dashboard</a>
+      <a class="nav-item" href="#">Pipeline</a>
+      <a class="nav-item active" href="feedback.html" aria-current="page">Feedback</a>
+      <a class="nav-item" href="#">Reports</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span class="avatar">SA</span>
+      <div class="sidebar-footer-text">
+        <div class="sidebar-footer-name">Startup A</div>
+        <div class="sidebar-footer-role">Talent Team</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <a class="breadcrumb" href="dashboard.html">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to Dashboard
+    </a>
+
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Feedback</h1>
+        <p class="page-subtitle">Give candidates a clear reason when you reject them</p>
+      </div>
+    </div>
+
+    <!-- JD + CANDIDATE -->
+    <section class="compare-grid" aria-label="Job description and candidate">
+      <article class="info-card">
+        <div class="info-eyebrow">Job description</div>
+        <h2 class="info-title">Backend Intern — Data Platforms</h2>
+        <p class="info-sub">Nomad Analytics · Doha</p>
+        <div class="chip-row">
+          <span class="chip chip-req">Python</span>
+          <span class="chip chip-req">Docker</span>
+          <span class="chip chip-req">SQL</span>
+          <span class="chip chip-req">Arabic — working proficiency</span>
+          <span class="chip">3+ months availability</span>
+        </div>
+      </article>
+
+      <article class="info-card">
+        <div class="info-eyebrow">Candidate</div>
+        <h2 class="info-title">Youssef Al-Sayed</h2>
+        <p class="info-sub">Computer Science, Year 3 · Nominated 6 days ago</p>
+        <dl class="req-list">
+          <div class="req-row">
+            <dt>Python</dt>
+            <dd><span class="pill pill-ok">Match</span></dd>
+          </div>
+          <div class="req-row">
+            <dt>Docker</dt>
+            <dd><span class="pill pill-miss">Not listed</span></dd>
+          </div>
+          <div class="req-row">
+            <dt>SQL</dt>
+            <dd><span class="pill pill-ok">Match</span></dd>
+          </div>
+          <div class="req-row">
+            <dt>Arabic proficiency</dt>
+            <dd><span class="pill pill-miss">English only</span></dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+
+    <!-- AI CHECKLIST -->
+    <section class="section" aria-label="AI suggested rejection reasons">
+      <h2 class="section-title">AI-suggested rejection reasons</h2>
+      <p class="section-desc">Compared against the job description, these are the likely reasons — pre-selected below.</p>
+
+      <div class="reason-list" id="reasonList">
+        <label class="reason-item checked">
+          <input type="checkbox" checked onchange="toggleReason(this)">
+          <span class="reason-text">Missing Docker experience</span>
+          <span class="ai-pill">AI suggested</span>
+        </label>
+        <label class="reason-item checked">
+          <input type="checkbox" checked onchange="toggleReason(this)">
+          <span class="reason-text">Language requirement not met — Arabic working proficiency required</span>
+          <span class="ai-pill">AI suggested</span>
+        </label>
+        <label class="reason-item">
+          <input type="checkbox" onchange="toggleReason(this)">
+          <span class="reason-text">Experience level mismatch</span>
+        </label>
+        <label class="reason-item">
+          <input type="checkbox" onchange="toggleReason(this)">
+          <span class="reason-text">Availability conflict</span>
+        </label>
+      </div>
+
+      <button class="btn-primary" type="button" onclick="generateMessage()">
+        Generate rejection message
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </section>
+
+    <!-- GENERATED MESSAGE -->
+    <section class="section" id="letterSection" style="display:none;" aria-label="Generated rejection message">
+      <div class="letter-card">
+        <div class="letter-head">
+          <div class="lang-toggle">
+            <button class="lang-btn active" type="button" onclick="setLang('en', this)">EN</button>
+            <button class="lang-btn" type="button" onclick="setLang('ar', this)">AR</button>
+          </div>
+          <span class="reviewed-badge">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M6 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Suggested reasons
+          </span>
+        </div>
+
+        <p class="letter-text" id="letterEn">Dear Youssef,
+
+Thank you for the time and effort you put into interviewing with Nomad Analytics through the QSTP internship program. It was a pleasure learning more about your background.
+
+After careful consideration, we've decided to move forward with another candidate for the Backend Intern — Data Platforms role. This was not an easy decision, and it reflects the strength of the overall candidate pool rather than any shortfall on your part.
+
+We were genuinely impressed by your enthusiasm, and we'd warmly welcome an application from you for future opportunities that come up through QSTP.
+
+Wishing you all the best in your studies and your next steps.
+
+— Nomad Analytics, via TrackHire</p>
+
+
+<p class="letter-text letter-ar" id="letterAr" style="display:none;">عزيزي يوسف，
+
+شكرًا لك على الوقت والجهد الذي بذلته في إجراء المقابلة مع نوماد أناليتكس عبر برنامج التدريب في QSTP. لقد كان من دواعي سرورنا التعرف أكثر على خلفيتك.
+
+بعد دراسة متأنية، قررنا المضي قدمًا مع مرشح آخر لوظيفة متدرب باكند - منصات البيانات. لم يكن هذا قرارًا سهلاً، وهو يعكس قوة مجموعة المرشحين ككل وليس أي تقصير من جانبك.
+
+لقد أعجبنا حقًا بحماسك، ونرحب بتقديمك لفرص مستقبلية تُطرح عبر QSTP.
+
+نتمنى لك كل التوفيق في دراستك وخطواتك القادمة.
+
+— نوماد أناليتكس، عبر TrackHire</p>
+
+
+        <div class="letter-footer">
+          <button class="btn-secondary" type="button" onclick="sendMessage()">Send to candidate</button>
+          <span class="sent-confirm" id="sentConfirm">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Message sent
+          </span>
+        </div>
+      </div>
+      <p class="demo-note">Demo note — sending is simulated for the hackathon prototype. No real email is dispatched.</p>
+    </section>
+
+  </main>
+</div>
+
+<script>
+function toggleReason(input){
+  input.closest('.reason-item').classList.toggle('checked', input.checked);
+}
+function generateMessage(){
+  document.getElementById('letterSection').style.display = 'block';
+  document.getElementById('sentConfirm').classList.remove('show');
+  document.getElementById('letterSection').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+function setLang(lang, btn){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('letterEn').style.display = lang==='en' ? 'block':'none';
+  document.getElementById('letterAr').style.display = lang==='ar' ? 'block':'none';
+}
+function sendMessage(){
+  document.getElementById('sentConfirm').classList.add('show');
+}
+</script>
+
+</body>
+</html>

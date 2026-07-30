@@ -1,0 +1,138 @@
+/* ---------------------------------------------------
+   CANDIDATE LIST
+--------------------------------------------------- */
+.candidate-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.candidate-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 18px 22px;
+}
+
+.candidate-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.candidate-meta {
+  font-size: 13px;
+  color: var(--body);
+  margin-top: 3px;
+}
+
+.btn-secondary.accepted {
+  color: var(--success);
+  border-color: var(--success-bg);
+  background: var(--success-bg);
+}
+
+/* ---------------------------------------------------
+   CONFLICT MODAL — QSTP internal only
+--------------------------------------------------- */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 43, 43, 0.45);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 50;
+}
+.modal-overlay.show { display: flex; }
+
+.modal {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card-hover);
+  max-width: 420px;
+  width: 100%;
+  padding: 30px 30px 26px;
+  text-align: center;
+}
+
+.modal-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--danger-bg);
+  color: var(--danger);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-icon svg { width: 26px; height: 26px; }
+
+.internal-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--danger);
+  background: var(--danger-bg);
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.modal-body {
+  font-size: 14px;
+  color: var(--body);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.modal-detail {
+  text-align: left;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin: 18px 0;
+}
+.modal-detail div {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 13.5px;
+}
+.modal-detail dt { color: var(--body); font-weight: 400; }
+.modal-detail dd { margin: 0; font-weight: 600; }
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+.modal-actions .btn-secondary,
+.modal-actions .btn-primary {
+  flex: 1;
+  justify-content: center;
+}
+
+/* ---------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------- */
+@media (max-width: 720px) {
+  .candidate-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .candidate-row .btn-secondary { width: 100%; justify-content: center; }
+}

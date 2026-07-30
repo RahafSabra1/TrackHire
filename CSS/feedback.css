@@ -1,0 +1,237 @@
+/* ---------------------------------------------------
+   BREADCRUMB (shared shape with score.html — add to
+   style.css if Rahaf/Sally also start reusing it)
+--------------------------------------------------- */
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--body);
+  margin-bottom: 20px;
+}
+.breadcrumb:hover { color: var(--title); }
+.breadcrumb svg { width: 14px; height: 14px; }
+
+/* ---------------------------------------------------
+   JD / CANDIDATE COMPARE CARDS
+--------------------------------------------------- */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+.info-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 24px 26px;
+}
+
+.info-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--body);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.info-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+}
+
+.info-sub {
+  font-size: 13px;
+  color: var(--body);
+  margin: 0 0 16px;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--body);
+  background: var(--bg);
+}
+
+.chip-req {
+  border-color: var(--primary-tint);
+  color: var(--primary);
+  background: var(--primary-tint);
+}
+
+.req-list { margin: 0; }
+
+.req-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.req-row:last-child { border-bottom: none; }
+.req-row dt { font-weight: 500; }
+.req-row dd { margin: 0; }
+
+.pill {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.pill-ok { background: var(--success-bg); color: var(--success); }
+.pill-miss { background: var(--danger-bg); color: var(--danger); }
+
+/* ---------------------------------------------------
+   SECTION HEADINGS (shared shape with score.css)
+--------------------------------------------------- */
+.section { margin-top: 40px; }
+.section-title { font-size: 20px; font-weight: 600; margin: 0 0 6px; }
+.section-desc { font-size: 14px; color: var(--body); margin: 0 0 20px; }
+
+/* ---------------------------------------------------
+   AI-SUGGESTED REASON CHECKLIST
+--------------------------------------------------- */
+.reason-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.reason-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.reason-item.checked {
+  border-color: var(--primary-tint);
+  background: var(--primary-tint);
+}
+
+.reason-item input {
+  accent-color: var(--primary);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.reason-text { font-size: 14px; flex: 1; }
+
+.ai-pill {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--primary);
+  background: #fff;
+  border: 1px solid var(--primary-tint);
+  padding: 2px 8px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------
+   GENERATED MESSAGE CARD
+--------------------------------------------------- */
+.letter-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 28px 30px;
+}
+
+.letter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.lang-toggle { display: flex; gap: 6px; }
+
+.lang-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--body);
+  cursor: pointer;
+}
+.lang-btn.active { background: var(--title); color: #fff; border-color: var(--title); }
+
+.reviewed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--success);
+  background: var(--success-bg);
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+.reviewed-badge svg { width: 14px; height: 14px; }
+
+.letter-text {
+  font-size: 14.5px;
+  line-height: 1.7;
+  white-space: pre-line;
+  margin: 0;
+}
+.letter-ar { direction: rtl; text-align: right; }
+
+.letter-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.sent-confirm {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--success);
+}
+.sent-confirm.show { display: flex; }
+.sent-confirm svg { width: 15px; height: 15px; }
+
+/* ---------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------- */
+@media (max-width: 900px) {
+  .compare-grid { grid-template-columns: 1fr; }
+}

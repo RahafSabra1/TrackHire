@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrackHire — Pipeline (Duplicate Detection demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../CSS/style.css">
+<link rel="stylesheet" href="../CSS/pipeline.css">
+
+</head>
+<body>
+<!--
+  This page is a stand-in for Rahaf's Kanban board so the
+  Duplicate Acceptance Detection modal has somewhere to live
+  and can be demoed on its own. When the real board lands,
+  move the "Mark as accepted" trigger + #conflictOverlay modal
+  (markup, pipeline.css, and the two JS functions) onto the
+  Onboarded column's accept action there, and this file can
+  either be deleted or kept as a QSTP-staff-only pipeline view.
+-->
+
+<div class="shell">
+
+  <!-- SIDEBAR — QSTP staff persona, not the startup one -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 12L10 18L20 6" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="brand-name">TrackHire</span>
+    </div>
+
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-item active" href="pipeline.html" aria-current="page">Pipeline</a>
+      <a class="nav-item" href="#">Startups</a>
+      <a class="nav-item" href="#">Reports</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span class="avatar">QS</span>
+      <div class="sidebar-footer-text">
+        <div class="sidebar-footer-name">QSTP Staff</div>
+        <div class="sidebar-footer-role">Program Team</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <a class="breadcrumb" href="dashboard.html">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to Dashboard
+    </a>
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Onboarding</h1>
+        <p class="page-subtitle">Candidates marked accepted are checked against active acceptances before onboarding.</p>
+      </div>
+    </div>
+
+    <section class="section" aria-label="Candidates ready for onboarding">
+      <div class="candidate-list">
+
+        <article class="candidate-row">
+          <div>
+            <div class="candidate-name">Lina Farouk</div>
+            <div class="candidate-meta">Offer accepted — Halalah Fintech</div>
+          </div>
+          <button class="btn-secondary" type="button" onclick="acceptCandidate(this, false)">Mark as accepted</button>
+        </article>
+
+        <article class="candidate-row">
+          <div>
+            <div class="candidate-name">Omar Haddad</div>
+            <div class="candidate-meta">Offer accepted — QCRI Labs</div>
+          </div>
+          <button class="btn-secondary" type="button" onclick="acceptCandidate(this, true)">Mark as accepted</button>
+        </article>
+
+        <article class="candidate-row">
+          <div>
+            <div class="candidate-name">Reem Al-Kubaisi</div>
+            <div class="candidate-meta">Offer accepted — Nomad Analytics</div>
+          </div>
+          <button class="btn-secondary" type="button" onclick="acceptCandidate(this, false)">Mark as accepted</button>
+        </article>
+
+      </div>
+      <p class="demo-note">This check is internal to QSTP staff — startups and candidates never see the conflict flag.</p>
+    </section>
+
+  </main>
+</div>
+
+<!-- CONFLICT MODAL -->
+<div class="modal-overlay" id="conflictOverlay">
+  <div class="modal">
+    <div class="modal-icon">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01M10.29 3.86l-8.18 14.18A2 2 0 0 0 3.82 21h16.36a2 2 0 0 0 1.71-2.96L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <span class="internal-badge">QSTP internal only</span>
+    <h2 class="modal-title">Potential conflict detected</h2>
+    <p class="modal-body">Omar Haddad has already accepted another active internship offer. Please review before proceeding.</p>
+
+    <dl class="modal-detail">
+      <div><dt>New acceptance</dt><dd>QCRI Labs</dd></div>
+      <div><dt>Existing acceptance</dt><dd>Falak Robotics</dd></div>
+      <div><dt>Accepted on</dt><dd>3 days ago</dd></div>
+    </dl>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" type="button" onclick="closeConflict()">Review conflict</button>
+      <button class="btn-primary" type="button" onclick="closeConflict()">Proceed anyway</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function acceptCandidate(btn, hasConflict){
+  if(hasConflict){
+    document.getElementById('conflictOverlay').classList.add('show');
+  }else{
+    btn.textContent = 'Onboarded';
+    btn.disabled = true;
+    btn.classList.add('accepted');
+  }
+}
+function closeConflict(){
+  document.getElementById('conflictOverlay').classList.remove('show');
+}
+</script>
+
+</body>
+</html>
