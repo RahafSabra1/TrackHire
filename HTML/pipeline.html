@@ -50,6 +50,10 @@
         <h1 class="page-title">Hiring Pipeline</h1>
         <p class="page-subtitle">Every candidate, every startup, one shared board — no more chasing status over email.</p>
       </div>
+      <div class="search-box">
+    <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <input type="text" id="candidateSearch" placeholder="Search candidates…" oninput="filterBoard(this.value)">
+  </div>
     </div>
 
     <!-- SUMMARY STRIP -->
@@ -140,13 +144,24 @@ function elapsedDays(date) {
 
 function stageIndex(stage) { return STAGES.indexOf(stage); }
 
+let searchTerm = "";
+
+function filterBoard(value) {
+  searchTerm = value.trim().toLowerCase();
+  renderBoard();
+}
+
 function renderBoard() {
   const board = document.getElementById("board");
   board.innerHTML = "";
 
-  STAGES.forEach(stage => {
-    const items = candidates.filter(c => c.stage === stage);
+  const visible = searchTerm
+    ? candidates.filter(c => c.name.toLowerCase().includes(searchTerm))
+    : candidates;
 
+  STAGES.forEach(stage => {
+    const items = visible.filter(c => c.stage === stage);
+  
     const col = document.createElement("div");
     col.className = "column";
     col.innerHTML = `

@@ -2,6 +2,38 @@
 .shell-wide { grid-template-columns: 216px 1fr; }
 .main-wide { max-width: 1320px; }
 
+/* ---------------------------------------------------
+   HEADER SEARCH
+--------------------------------------------------- */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px 14px;
+  min-width: 240px;
+  flex-shrink: 0;
+}
+.search-box svg { width: 16px; height: 16px; color: var(--body); flex-shrink: 0; }
+.search-box input {
+  border: none;
+  outline: none;
+  background: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: var(--title);
+  width: 100%;
+}
+.search-box input::placeholder { color: var(--body); }
 
 .stat-grid-4 {
   display: grid;
