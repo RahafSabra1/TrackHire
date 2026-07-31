@@ -3,28 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrackHire — Pipeline (Duplicate Detection demo)</title>
+<title>TrackHire — Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../CSS/style.css">
 <link rel="stylesheet" href="../CSS/pipeline.css">
-
 </head>
 <body>
-<!--
-  This page is a stand-in for Rahaf's Kanban board so the
-  Duplicate Acceptance Detection modal has somewhere to live
-  and can be demoed on its own. When the real board lands,
-  move the "Mark as accepted" trigger + #conflictOverlay modal
-  (markup, pipeline.css, and the two JS functions) onto the
-  Onboarded column's accept action there, and this file can
-  either be deleted or kept as a QSTP-staff-only pipeline view.
--->
 
-<div class="shell">
+<div class="shell shell-wide">
 
-  <!-- SIDEBAR — QSTP staff persona, not the startup one -->
+  <!-- SIDEBAR — QSTP staff persona: this board spans every startup, so it
+       lives with the program team, not inside a single startup's view. -->
   <aside class="sidebar">
     <div class="brand">
       <span class="brand-mark">
@@ -37,8 +28,9 @@
 
     <nav class="nav" aria-label="Primary">
       <a class="nav-item active" href="pipeline.html" aria-current="page">Pipeline</a>
-      <a class="nav-item" href="#">Startups</a>
-      <a class="nav-item" href="#">Reports</a>
+      <a class="nav-item" href="dashboard.html">Startup View</a>
+      <a class="nav-item" href="feedback.html">Feedback</a>
+      <a class="nav-item" href="score.html">Reports</a>
     </nav>
 
     <div class="sidebar-footer">
@@ -51,89 +43,218 @@
   </aside>
 
   <!-- MAIN -->
-  <main class="main">
+  <main class="main main-wide">
 
-    <a class="breadcrumb" href="dashboard.html">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Back to Dashboard
-    </a>
     <div class="page-header">
       <div>
-        <h1 class="page-title">Onboarding</h1>
-        <p class="page-subtitle">Candidates marked accepted are checked against active acceptances before onboarding.</p>
+        <h1 class="page-title">Hiring Pipeline</h1>
+        <p class="page-subtitle">Every candidate, every startup, one shared board — no more chasing status over email.</p>
       </div>
     </div>
 
-    <section class="section" aria-label="Candidates ready for onboarding">
-      <div class="candidate-list">
-
-        <article class="candidate-row">
-          <div>
-            <div class="candidate-name">Lina Farouk</div>
-            <div class="candidate-meta">Offer accepted — Halalah Fintech</div>
-          </div>
-          <button class="btn-secondary" type="button" onclick="acceptCandidate(this, false)">Mark as accepted</button>
-        </article>
-
-        <article class="candidate-row">
-          <div>
-            <div class="candidate-name">Omar Haddad</div>
-            <div class="candidate-meta">Offer accepted — QCRI Labs</div>
-          </div>
-          <button class="btn-secondary" type="button" onclick="acceptCandidate(this, true)">Mark as accepted</button>
-        </article>
-
-        <article class="candidate-row">
-          <div>
-            <div class="candidate-name">Reem Al-Kubaisi</div>
-            <div class="candidate-meta">Offer accepted — Nomad Analytics</div>
-          </div>
-          <button class="btn-secondary" type="button" onclick="acceptCandidate(this, false)">Mark as accepted</button>
-        </article>
-
-      </div>
-      <p class="demo-note">This check is internal to QSTP staff — startups and candidates never see the conflict flag.</p>
+    <!-- SUMMARY STRIP -->
+    <section class="stat-grid stat-grid-4" aria-label="Pipeline summary">
+      <article class="stat-card">
+        <div class="stat-label">Active Candidates</div>
+        <div class="stat-value" id="statActive">—</div>
+      </article>
+      <article class="stat-card">
+        <div class="stat-label">Stalled 3+ Days</div>
+        <div class="stat-value" id="statStalled">—</div>
+        <div class="stat-delta warning" id="statStalledNote">&nbsp;</div>
+      </article>
+      <article class="stat-card">
+        <div class="stat-label">In Offer Stage</div>
+        <div class="stat-value" id="statOffer">—</div>
+      </article>
+      <article class="stat-card">
+        <div class="stat-label">Onboarded This Cycle</div>
+        <div class="stat-value" id="statOnboarded">—</div>
+      </article>
     </section>
+
+    <!-- BOARD -->
+    <section class="board" id="board" aria-label="Candidate pipeline board">
+      <!-- columns injected by JS -->
+    </section>
+
 
   </main>
 </div>
 
-<!-- CONFLICT MODAL -->
+<!-- CONFLICT MODAL — QSTP internal only -->
 <div class="modal-overlay" id="conflictOverlay">
   <div class="modal">
     <div class="modal-icon">
       <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01M10.29 3.86l-8.18 14.18A2 2 0 0 0 3.82 21h16.36a2 2 0 0 0 1.71-2.96L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <span class="internal-badge">QSTP internal only</span>
-    <h2 class="modal-title">Potential conflict detected</h2>
-    <p class="modal-body">Omar Haddad has already accepted another active internship offer. Please review before proceeding.</p>
+    <h2 class="modal-title" id="conflictTitle">Potential conflict detected</h2>
+    <p class="modal-body" id="conflictBody">This candidate has already accepted another active internship offer. Please review before proceeding.</p>
 
     <dl class="modal-detail">
-      <div><dt>New acceptance</dt><dd>QCRI Labs</dd></div>
-      <div><dt>Existing acceptance</dt><dd>Falak Robotics</dd></div>
-      <div><dt>Accepted on</dt><dd>3 days ago</dd></div>
+      <div><dt>New acceptance</dt><dd id="conflictNew">—</dd></div>
+      <div><dt>Existing acceptance</dt><dd id="conflictExisting">—</dd></div>
+      <div><dt>Accepted on</dt><dd id="conflictWhen">—</dd></div>
     </dl>
 
     <div class="modal-actions">
-      <button class="btn-secondary" type="button" onclick="closeConflict()">Review conflict</button>
-      <button class="btn-primary" type="button" onclick="closeConflict()">Proceed anyway</button>
+      <button class="btn-secondary" type="button" onclick="closeConflict(false)">Review conflict</button>
+      <button class="btn-primary" type="button" onclick="closeConflict(true)">Proceed anyway</button>
     </div>
   </div>
 </div>
 
 <script>
-function acceptCandidate(btn, hasConflict){
-  if(hasConflict){
-    document.getElementById('conflictOverlay').classList.add('show');
-  }else{
-    btn.textContent = 'Onboarded';
-    btn.disabled = true;
-    btn.classList.add('accepted');
+/* ---------------------------------------------------
+   MOCK DATA — no backend, everything lives in the browser.
+   Each candidate carries the timestamp of their last stage
+   move, which is all that's needed to compute "days in stage"
+   and flag anyone stalled.
+--------------------------------------------------- */
+const STAGES = ["Nominated", "Interviewed", "Offer", "Onboarded"];
+const STALL_THRESHOLD_DAYS = 3;
+
+function daysAgo(n) {
+  const d = new Date();
+  d.setDate(d.getDate() - n);
+  return d;
+}
+
+let candidates = [
+  { id: 1, name: "Lina Farouk", startup: "Halalah Fintech", stage: "Nominated", since: daysAgo(1), conflict: null },
+  { id: 2, name: "Youssef Al-Sayed", startup: "Nomad Analytics", stage: "Nominated", since: daysAgo(4), conflict: null },
+  { id: 3, name: "Mariam Debbagh", startup: "QCRI Labs", stage: "Interviewed", since: daysAgo(2), conflict: null },
+  { id: 4, name: "Khaled Nasser", startup: "Falak Robotics", stage: "Interviewed", since: daysAgo(6), conflict: null },
+  { id: 5, name: "Reem Al-Kubaisi", startup: "Nomad Analytics", stage: "Offer", since: daysAgo(1), conflict: null },
+  { id: 6, name: "Omar Haddad", startup: "QCRI Labs", stage: "Offer", since: daysAgo(3),
+    conflict: { existingStartup: "Falak Robotics", acceptedDaysAgo: 3 } },
+  { id: 7, name: "Sara Mansour", startup: "Halalah Fintech", stage: "Onboarded", since: daysAgo(5), conflict: null },
+];
+
+/* ---------------------------------------------------
+   RENDER
+--------------------------------------------------- */
+function elapsedDays(date) {
+  const ms = Date.now() - date.getTime();
+  return Math.floor(ms / (1000 * 60 * 60 * 24));
+}
+
+function stageIndex(stage) { return STAGES.indexOf(stage); }
+
+function renderBoard() {
+  const board = document.getElementById("board");
+  board.innerHTML = "";
+
+  STAGES.forEach(stage => {
+    const items = candidates.filter(c => c.stage === stage);
+
+    const col = document.createElement("div");
+    col.className = "column";
+    col.innerHTML = `
+      <div class="column-header">
+        <span class="column-title">${stage}</span>
+        <span class="column-count">${items.length}</span>
+      </div>
+      <div class="column-body" id="col-${stage}"></div>
+    `;
+    board.appendChild(col);
+
+    const body = col.querySelector(".column-body");
+    if (items.length === 0) {
+      body.innerHTML = `<p class="column-empty">No candidates here</p>`;
+    }
+    items.forEach(c => body.appendChild(renderCard(c)));
+  });
+
+  renderStats();
+}
+
+function renderCard(c) {
+  const days = elapsedDays(c.since);
+  const stalled = days >= STALL_THRESHOLD_DAYS && c.stage !== "Onboarded";
+  const nextIndex = stageIndex(c.stage) + 1;
+  const isLast = nextIndex >= STAGES.length;
+
+  const card = document.createElement("article");
+  card.className = "kanban-card" + (stalled ? " stalled" : "");
+
+  card.innerHTML = `
+    <div class="kanban-card-top">
+      <span class="kanban-name">${c.name}</span>
+      ${stalled ? `<span class="stall-tag">Stalled</span>` : ""}
+    </div>
+    <div class="kanban-meta">${c.startup}</div>
+    <div class="kanban-days">${days === 0 ? "Moved today" : days + " day" + (days === 1 ? "" : "s") + " in " + c.stage}</div>
+    <div class="kanban-actions">
+      ${!isLast ? `<button class="btn-secondary btn-sm" type="button" onclick="advance(${c.id})">${c.stage === "Offer" ? "Mark accepted" : "Move forward"}</button>` : `<span class="onboarded-tag">Onboarded</span>`}
+      ${c.stage !== "Onboarded" ? `<a class="reject-link" href="feedback.html">Reject →</a>` : ""}
+    </div>
+  `;
+  return card;
+}
+
+function renderStats() {
+  const active = candidates.filter(c => c.stage !== "Onboarded").length;
+  const stalled = candidates.filter(c => c.stage !== "Onboarded" && elapsedDays(c.since) >= STALL_THRESHOLD_DAYS).length;
+  const offer = candidates.filter(c => c.stage === "Offer").length;
+  const onboarded = candidates.filter(c => c.stage === "Onboarded").length;
+
+  document.getElementById("statActive").textContent = active;
+  document.getElementById("statStalled").textContent = stalled;
+  document.getElementById("statStalledNote").textContent = stalled > 0 ? "Needs a follow-up nudge" : "All caught up";
+  document.getElementById("statOffer").textContent = offer;
+  document.getElementById("statOnboarded").textContent = onboarded;
+}
+
+/* ---------------------------------------------------
+   STAGE ADVANCE + DUPLICATE ACCEPTANCE CHECK
+--------------------------------------------------- */
+let pendingCandidateId = null;
+
+function advance(id) {
+  const c = candidates.find(x => x.id === id);
+  if (!c) return;
+
+  const next = STAGES[stageIndex(c.stage) + 1];
+
+  // Moving into "Onboarded" is the acceptance point — this is where
+  // QSTP checks for a duplicate active acceptance before letting it through.
+  if (next === "Onboarded" && c.conflict) {
+    pendingCandidateId = id;
+    openConflict(c);
+    return;
   }
+
+  c.stage = next;
+  c.since = new Date();
+  renderBoard();
 }
-function closeConflict(){
-  document.getElementById('conflictOverlay').classList.remove('show');
+
+function openConflict(c) {
+  document.getElementById("conflictTitle").textContent = "Potential conflict detected";
+  document.getElementById("conflictBody").textContent =
+    `${c.name} has already accepted another active internship offer. Please review before proceeding.`;
+  document.getElementById("conflictNew").textContent = c.startup;
+  document.getElementById("conflictExisting").textContent = c.conflict.existingStartup;
+  document.getElementById("conflictWhen").textContent = `${c.conflict.acceptedDaysAgo} days ago`;
+  document.getElementById("conflictOverlay").classList.add("show");
 }
+
+function closeConflict(proceedAnyway) {
+  document.getElementById("conflictOverlay").classList.remove("show");
+  if (proceedAnyway && pendingCandidateId !== null) {
+    const c = candidates.find(x => x.id === pendingCandidateId);
+    if (c) {
+      c.stage = "Onboarded";
+      c.since = new Date();
+      renderBoard();
+    }
+  }
+  pendingCandidateId = null;
+}
+
+renderBoard();
 </script>
 
 </body>

@@ -1,6 +1,209 @@
-/* ---------------------------------------------------
-   CANDIDATE LIST
---------------------------------------------------- */
+
+.shell-wide { grid-template-columns: 216px 1fr; }
+.main-wide { max-width: 1320px; }
+
+
+.stat-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 24px 24px 26px;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.stat-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.stat-label {
+  font-size: 12.5px;
+  color: var(--body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.stat-delta {
+  font-size: 13px;
+  color: var(--body);
+}
+
+.stat-delta.positive { color: var(--success); }
+.stat-delta.warning { color: #B08954; }
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-card { transition: none; }
+}
+
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.column {
+  background: #F5F4F1;
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  min-height: 120px;
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px 14px;
+}
+
+.column-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+}
+
+.column-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--body);
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 9px;
+}
+
+.column-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.column-empty {
+  font-size: 13px;
+  color: var(--body);
+  text-align: center;
+  padding: 18px 8px;
+  margin: 0;
+}
+
+
+.kanban-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 14px 16px;
+  transition: box-shadow 0.15s ease;
+}
+.kanban-card:hover { box-shadow: var(--shadow-card-hover); }
+
+.kanban-card.stalled {
+  border-color: var(--danger-bg);
+  background: linear-gradient(0deg, var(--danger-bg), var(--danger-bg)), var(--card);
+  background-blend-mode: overlay;
+}
+
+.kanban-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+.kanban-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+}
+
+.stall-tag {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--danger);
+  background: var(--danger-bg);
+  padding: 2px 8px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.kanban-meta {
+  font-size: 13px;
+  color: var(--body);
+}
+
+.kanban-days {
+  font-size: 12px;
+  color: var(--body);
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.kanban-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.btn-sm {
+  padding: 7px 12px;
+  font-size: 12.5px;
+}
+
+.reject-link {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--danger);
+  white-space: nowrap;
+}
+.reject-link:hover { text-decoration: underline; }
+
+.onboarded-tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--success);
+  background: var(--success-bg);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+
+
+@media (max-width: 1100px) {
+  .board { grid-template-columns: repeat(2, 1fr); }
+  .stat-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .board { grid-template-columns: 1fr; }
+  .stat-grid-4 { grid-template-columns: 1fr; }
+  .shell-wide { grid-template-columns: 1fr; }
+}
+
 .candidate-list {
   display: flex;
   flex-direction: column;
@@ -36,9 +239,7 @@
   background: var(--success-bg);
 }
 
-/* ---------------------------------------------------
-   CONFLICT MODAL — QSTP internal only
---------------------------------------------------- */
+
 .modal-overlay {
   display: none;
   position: fixed;
@@ -129,9 +330,7 @@
   justify-content: center;
 }
 
-/* ---------------------------------------------------
-   RESPONSIVE
---------------------------------------------------- */
+
 @media (max-width: 720px) {
   .candidate-row { flex-direction: column; align-items: flex-start; gap: 12px; }
   .candidate-row .btn-secondary { width: 100%; justify-content: center; }
