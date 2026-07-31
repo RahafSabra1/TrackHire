@@ -99,8 +99,7 @@
     </dl>
 
     <div class="modal-actions">
-      <button class="btn-secondary" type="button" onclick="closeConflict(false)">Review conflict</button>
-      <button class="btn-primary" type="button" onclick="closeConflict(true)">Proceed anyway</button>
+        <button class="btn-primary" type="button" onclick="closeConflict()">Acknowledge</button>
     </div>
   </div>
 </div>
@@ -122,14 +121,13 @@ function daysAgo(n) {
 }
 
 let candidates = [
-  { id: 1, name: "Lina Farouk", startup: "Halalah Fintech", stage: "Nominated", since: daysAgo(1), conflict: null },
-  { id: 2, name: "Youssef Al-Sayed", startup: "Nomad Analytics", stage: "Nominated", since: daysAgo(4), conflict: null },
-  { id: 3, name: "Mariam Debbagh", startup: "QCRI Labs", stage: "Interviewed", since: daysAgo(2), conflict: null },
-  { id: 4, name: "Khaled Nasser", startup: "Falak Robotics", stage: "Interviewed", since: daysAgo(6), conflict: null },
-  { id: 5, name: "Reem Al-Kubaisi", startup: "Nomad Analytics", stage: "Offer", since: daysAgo(1), conflict: null },
-  { id: 6, name: "Omar Haddad", startup: "QCRI Labs", stage: "Offer", since: daysAgo(3),
-    conflict: { existingStartup: "Falak Robotics", acceptedDaysAgo: 3 } },
-  { id: 7, name: "Sara Mansour", startup: "Halalah Fintech", stage: "Onboarded", since: daysAgo(5), conflict: null },
+    { id: 1, name: "Lina Farouk", startup: "Biteback", stage: "Nominated", since: daysAgo(1), conflict: null },
+    { id: 2, name: "Youssef Al-Sayed", startup: "Agricope", stage: "Nominated", since: daysAgo(4), conflict: null },
+    { id: 3, name: "Mariam Debbagh", startup: "Cyfirm", stage: "Interviewed", since: daysAgo(2), conflict: null },
+    { id: 4, name: "Khaled Nasser", startup: "Classtap", stage: "Interviewed", since: daysAgo(6), conflict: null },
+    { id: 5, name: "Reem Al-Kubaisi", startup: "Agricope", stage: "Offer", since: daysAgo(1), conflict: null },
+    { id: 6, name: "Omar Haddad", startup: "Cyfirm", stage: "Offer", since: daysAgo(3),conflict: { existingStartup: "Classtap", acceptedDaysAgo: 3 } },
+    { id: 7, name: "Sara Mansour", startup: "Biteback", stage: "Onboarded", since: daysAgo(5), conflict: null },
 ];
 
 /* ---------------------------------------------------
@@ -241,16 +239,8 @@ function openConflict(c) {
   document.getElementById("conflictOverlay").classList.add("show");
 }
 
-function closeConflict(proceedAnyway) {
-  document.getElementById("conflictOverlay").classList.remove("show");
-  if (proceedAnyway && pendingCandidateId !== null) {
-    const c = candidates.find(x => x.id === pendingCandidateId);
-    if (c) {
-      c.stage = "Onboarded";
-      c.since = new Date();
-      renderBoard();
-    }
-  }
+function closeConflict() {
+  document.getElementById('conflictOverlay').classList.remove('show');
   pendingCandidateId = null;
 }
 
