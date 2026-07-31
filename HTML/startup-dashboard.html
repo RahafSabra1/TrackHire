@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../CSS/style.css">
-<link rel="stylesheet" href="../CSS/dashboard.css">
+<link rel="stylesheet" href="../CSS/startup-dashboard.css">
 
 
 </head>
@@ -37,7 +37,7 @@
     <div class="sidebar-footer">
       <span class="avatar">SA</span>
       <div class="sidebar-footer-text">
-        <div class="sidebar-footer-name">Agricope</div>
+        <div class="sidebar-footer-name startupName">startup</div>
         <div class="sidebar-footer-role">Talent Team</div>
       </div>
     </div>
@@ -48,10 +48,17 @@
 
     <div class="page-header">
       <div>
-        <h1 class="page-title">Dashboard</h1>
-        <div class="sidebar-footer-name">Agricope</div>
-        <p class="page-subtitle">Welcome back, Agricope</p>
-      </div>
+    <h1 class="page-title">Dashboard</h1>
+
+    <div class="sidebar-footer-name startupName">
+        Startup
+    </div>
+
+    <p class="page-subtitle">
+        Welcome back,
+        <span class="startupName">Startup</span>
+    </p>
+</div>
       <a href="../HTML/pipeline.html">
       <button class="btn-primary" type="button">
         View Pipeline
@@ -117,6 +124,18 @@
 
   </main>
 </div>
+
+<script>
+const username = localStorage.getItem("username");
+
+if (username) {
+    const formatted = username.charAt(0).toUpperCase() + username.slice(1);
+
+    document.querySelectorAll(".startupName").forEach(el => {
+        el.textContent = formatted;
+    });
+}
+</script>
 
 </body>
 </html>

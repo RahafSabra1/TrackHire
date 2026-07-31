@@ -1,0 +1,137 @@
+/* Summary Cards */
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 36px;
+}
+
+.stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 24px;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.stat-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--body);
+    margin-bottom: 14px;
+}
+
+.stat-value {
+    font-family: var(--font-display);
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -.03em;
+}
+
+/* Table */
+
+.table-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+}
+
+.section-header {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-family: var(--font-display);
+    font-weight: 600;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    text-align: left;
+    padding: 18px 28px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--body);
+    border-bottom: 1px solid var(--border);
+}
+
+tbody td {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status.excellent {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.status.good {
+    background: var(--primary-tint);
+    color: var(--primary);
+}
+
+.status.needs-improvement {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.table-link {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.table-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 640px) {
+
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

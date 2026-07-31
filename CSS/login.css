@@ -1,0 +1,205 @@
+/* ===== LOGIN PAGE (login.html) ===== */
+
+/* ---------------------------------------------------
+   PAGE SHELL — centers the card on the app background
+--------------------------------------------------- */
+.auth-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 700%;
+  max-width: 1000px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 44px 40px 40px;
+}
+
+/* ---------------------------------------------------
+   BRAND / HEADER — centered, per reference layout
+--------------------------------------------------- */
+.auth-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--title);
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+.auth-tagline {
+  font-size: 14px;
+  color: var(--body);
+  text-align: center;
+  margin: 0 0 22px;
+}
+
+.auth-subtitle {
+  font-size: 14.5px;
+  color: var(--body);
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+/* ---------------------------------------------------
+   ROLE SEGMENTED CONTROL
+--------------------------------------------------- */
+.role-switch {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #F5F4F1;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  margin-bottom: 24px;
+}
+
+.role-indicator {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  height: calc(100% - 6px);
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(43, 43, 43, 0.06), 0 4px 10px rgba(43, 43, 43, 0.06);
+  transition: transform 0.2s ease;
+  z-index: 0;
+}
+
+.role-switch.qstp-active .role-indicator {
+  transform: translateX(100%);
+}
+
+.role-option {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  border: none;
+  padding: 9px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--body);
+  cursor: pointer;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+.role-option:hover { color: var(--title); }
+
+.role-option.active {
+  color: var(--primary);
+}
+
+/* ---------------------------------------------------
+   FORM FIELDS
+--------------------------------------------------- */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--title);
+}
+
+.field-input {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--title);
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field-input:hover {
+  border-color: #D9D3CB;
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-tint);
+}
+
+/* ---------------------------------------------------
+   REMEMBER ME / FORGOT PASSWORD ROW
+--------------------------------------------------- */
+.field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -4px;
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--body);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.forgot-link {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--primary);
+  transition: opacity 0.15s ease;
+}
+
+.forgot-link:hover { opacity: 0.75; }
+
+/* ---------------------------------------------------
+   SUBMIT BUTTON
+--------------------------------------------------- */
+.auth-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+/* ---------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------- */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 36px 26px 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .role-indicator,
+  .field-input,
+  .forgot-link {
+    transition: none;
+  }
+}

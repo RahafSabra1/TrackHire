@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackHire | Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/login.css">
+</head>
+
+<body>
+
+<div class="auth-shell">
+
+    <div class="auth-card">
+
+        <h1 class="auth-brand">TrackHire</h1>
+
+        <p class="auth-tagline">
+            AI-powered hiring platform
+        </p>
+
+        <p class="auth-subtitle">
+            Sign in to continue
+        </p>
+
+        <div class="role-switch" id="roleSwitch">
+
+            <div class="role-indicator"></div>
+
+            <button
+                type="button"
+                class="role-option active"
+                id="startupBtn">
+                Startup
+            </button>
+
+            <button
+                type="button"
+                class="role-option"
+                id="qstpBtn">
+                QSTP Administrator
+            </button>
+
+        </div>
+
+        <form class="auth-form" id="loginForm">
+
+            <div class="field">
+                <label class="field-label" for="email">
+                    Email
+                </label>
+
+                <input
+                    id="email"
+                    class="field-input"
+                    type="email"
+                    placeholder="you@company.com"
+                    required>
+            </div>
+
+            <div class="field">
+                <label class="field-label" for="password">
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    class="field-input"
+                    type="password"
+                    placeholder="••••••••"
+                    required>
+            </div>
+
+            <div class="field-row">
+
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    Remember me
+                </label>
+
+                <a href="#" class="forgot-link">
+                    Forgot password?
+                </a>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn-primary auth-submit">
+                Sign In
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+let role = "startup";
+
+const roleSwitch = document.getElementById("roleSwitch");
+const startupBtn = document.getElementById("startupBtn");
+const qstpBtn = document.getElementById("qstpBtn");
+const loginForm = document.getElementById("loginForm");
+
+startupBtn.addEventListener("click", () => {
+
+    role = "startup";
+
+    startupBtn.classList.add("active");
+    qstpBtn.classList.remove("active");
+
+    roleSwitch.classList.remove("qstp-active");
+
+});
+
+qstpBtn.addEventListener("click", () => {
+
+    role = "qstp";
+
+    qstpBtn.classList.add("active");
+    startupBtn.classList.remove("active");
+
+    roleSwitch.classList.add("qstp-active");
+
+});
+
+loginForm.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    if(role === "startup"){
+
+        window.location.href = "index.html";   // Startup Dashboard
+
+    }else{
+
+        window.location.href = "qstp-dashboard.html"; // QSTP Dashboard
+
+    }
+
+});
+
+loginForm.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const username = email.split("@")[1];
+
+    localStorage.setItem("username", username);
+
+});
+
+loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+
+    const username = email
+        .split("@")[1]
+        .split(".")[0];
+
+    localStorage.setItem("username", username);
+
+    if (role === "startup") {
+        window.location.href = "startup-dashboard.html"; // veya kendi dosya adın
+    } else {
+        window.location.href = "qstp-dashboard.html";
+    }
+});
+
+</script>
+
+</body>
+</html>
