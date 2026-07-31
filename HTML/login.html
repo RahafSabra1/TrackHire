@@ -134,32 +134,6 @@ qstpBtn.addEventListener("click", () => {
 
 });
 
-loginForm.addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    if(role === "startup"){
-
-        window.location.href = "index.html";   // Startup Dashboard
-
-    }else{
-
-        window.location.href = "qstp-dashboard.html"; // QSTP Dashboard
-
-    }
-
-});
-
-loginForm.addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    const email = document.getElementById("email").value;
-    const username = email.split("@")[1];
-
-    localStorage.setItem("username", username);
-
-});
 
 loginForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -173,7 +147,7 @@ loginForm.addEventListener("submit", function (e) {
     localStorage.setItem("username", username);
 
     if (role === "startup") {
-        window.location.href = "startup-dashboard.html"; // veya kendi dosya adın
+        window.location.href = "startup-dashboard.html"; 
     } else {
         window.location.href = "qstp-dashboard.html";
     }
