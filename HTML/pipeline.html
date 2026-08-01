@@ -29,13 +29,13 @@
     <nav class="nav" aria-label="Primary">
       <a class="nav-item active" href="../HTML/pipeline.html" aria-current="page">Pipeline</a>
       <a class="nav-item" href="../HTML/startup-dashboard.html">Dashboard</a>
-      <a class="nav-item" href="../HTML/feedback.html">Feedback</a>
+      <a href="rejection-insights.html" class="nav-item">Rejection Insights</a>
     </nav>
 
     <div class="sidebar-footer">
       <span class="avatar">QS</span>
       <div class="sidebar-footer-text">
-        <div class="sidebar-footer-name startupName">QSTP Staff</div>
+        <div class="sidebar-footer-name">Startup Account</div>
         <div class="sidebar-footer-role">Program Team</div>
       </div>
     </div>
@@ -260,15 +260,6 @@ function closeConflict() {
 
 renderBoard();
 
-const username = localStorage.getItem("username");
-
-if (username) {
-    const formatted = username.charAt(0).toUpperCase() + username.slice(1);
-
-    document.querySelectorAll(".startupName").forEach(el => {
-        el.textContent = formatted;
-    });
-}
 </script>
 
 </body>
