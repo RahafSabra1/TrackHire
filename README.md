@@ -2,7 +2,7 @@
 
 **A shared hiring pipeline for QSTP internships — built for the "Build for QSTP" Internship Program Challenge (Challenge 3: Hiring Funnel Black Box).**
 
-TrackHire replaces informal WhatsApp/email hiring updates with one shared board, tracking every candidate from Nomination through Interview, Offer, and Onboarding — while adding three intelligent layers: a Hiring Score for startup accountability, an AI Rejection Assistant that closes the feedback loop, and Duplicate Acceptance Detection to protect fairness across the program.
+TrackHire replaces informal WhatsApp/email hiring updates with one shared board, tracking every candidate from Nomination through Interview, Offer, and Onboarding — while adding three intelligent layers: a Hiring Score for startup accountability, an AI Hiring Assistant that closes the feedback loop, and Duplicate Acceptance Detection to protect fairness across the program.
 
 ---
 
@@ -28,22 +28,31 @@ No `npm install`, no server, no setup. Just open the HTML file.
 |---|---|---|---|
 | Login | `HTML/login.html` | Everyone | Role selection (Startup / QSTP Admin) |
 | Startup Dashboard | `HTML/startup-dashboard.html` | Startups | Startup's own job posting + quick links |
-| Pipeline Board | `HTML/pipeline.html` | Startups & QSTP staff | Kanban-style candidate tracker: Nominated → Interviewed → Offer → Onboarded, with stall detection and search |
-| Feedback / Rejection Assistant | `HTML/feedback.html` | Startups | AI-suggested rejection reasons based on the job description, one-click send |
+| Pipeline Board | `HTML/pipeline.html` | Startups & QSTP staff | Kanban-style candidate tracker: Nominated → Interviewed → Offer → Onboarded, with stall detection and search | Automates onboarding reminders and document follow-ups
+| Feedback / Hiring Assistant | `HTML/feedback.html` | Startups | AI-suggested rejection reasons based on the job description, one-click send | 
 | Score Breakdown | `HTML/score.html` | Startups | A startup's own Hiring Score and how to improve it |
 | QSTP Dashboard | `HTML/qstp-dashboard.html` | QSTP staff | Leaderboard ranking all startups by Hiring Score |
 | Startup Details | `HTML/startup-details.html` | QSTP staff | Drill-down into one startup's score breakdown, reached via "View Details" on the QSTP Dashboard |
-| Program Impact Report (Future work) | `HTML/reports.html` | QSTP staff | Program-wide metrics: avg. time-to-hire, time saved, rejection reason breakdown, duplicate conflicts caught |
 
 ---
 
 ## Key Features
 
 1. **Shared Pipeline Board** — real-time candidate status visible to both QSTP and startups, no more chasing emails
-2. **Hiring Health Score** — scores each startup on responsiveness, feedback completion, offer speed, and onboarding completion
-3. **AI Smart Rejection Assistant** — reads the job description, suggests specific rejection reasons, drafts and sends a respectful message in one click
-4. **Duplicate Acceptance Detection** — flags QSTP staff (only) if a candidate has accepted two active QSTP-linked offers at once
-5. **Program Impact Report (Future work)** — proves the tool's impact with real metrics: time-to-hire, time saved, rejection reasons, conflicts caught
+
+2. **Hiring Score**
+   - Live hiring performance score
+   - Tracks response time, feedback & onboarding
+   - Encourages faster hiring through transparency
+
+3. **AI Hiring Assistant**
+   - Compares candidates with job requirements and suggests rejection reasons
+   - Automates onboarding reminders and document follow-ups
+
+4. **Duplicate Acceptance Detection**
+   - Detects multiple active internship acceptances
+   - Alerts QSTP staff immediately
+   - Prevents onboarding conflicts
 
 ---
 
