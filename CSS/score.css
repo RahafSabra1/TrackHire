@@ -1,7 +1,53 @@
 /* ---------------------------------------------------
    ICON SIZING (breadcrumb + recommendation icons)
 --------------------------------------------------- */
+/* ---------------------------------------------------
+   PIPELINE SNAPSHOT (score-card third column)
+--------------------------------------------------- */
+.score-pipeline {
+  flex-shrink: 0;
+  min-width: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 
+.pipeline-stage-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pipeline-stage-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+}
+
+.pipeline-stage-label { color: var(--body); }
+
+.pipeline-stage-count {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--title);
+}
+
+.pipeline-view-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 4px;
+}
+.pipeline-view-link svg { width: 14px; height: 14px; }
+.pipeline-view-link:hover { color: var(--primary-hover); }
+
+@media (max-width: 900px) {
+  .score-pipeline { min-width: 0; width: 100%; }
+}
 /* ---------------------------------------------------
    SECTION HEADINGS
 --------------------------------------------------- */

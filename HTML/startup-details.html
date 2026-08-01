@@ -81,16 +81,28 @@
 
                 <div class="score-meta">
                     <dl class="score-stat-row">
-                        <div class="score-stat">
-                            <dt>Program average</dt>
-                            <dd>86</dd>
-                        </div>
-                        <div class="score-stat">
-                            <dt>Rank</dt>
-                            <dd id="scoreRank">—</dd>
-                        </div>
-                    </dl>
-                </div>
+                    <div class="score-stat">
+                        <dt>Program average</dt>
+                        <dd>86</dd>
+                    </div>
+                    <div class="score-stat">
+                        <dt>Rank</dt>
+                        <dd id="scoreRank">—</dd>
+                    </div>
+                </dl>
+        </div>
+
+<div class="score-divider"></div>
+
+<div class="score-pipeline" aria-label="Pipeline snapshot">
+    <div class="score-eyebrow">Pipeline</div>
+    <div class="pipeline-stage-list" id="pipelineStages"></div>
+    <a href="pipeline.html" class="pipeline-view-link">
+        View full pipeline
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+</div>
+</section>
             </section>
 
             <!-- SCORE BREAKDOWN -->
@@ -140,49 +152,54 @@
            and looks the name up here.
         --------------------------------------------------- */
         const STARTUPS = {
-            "NovaTech": {
-                score: 91, rank: "#1", status: "Excellent",
-                response: 93, feedback: 90, offer: 90,
-                recs: [
-                    "No overdue interview feedback — keep it up.",
-                    "Consider mentoring a lower-scoring startup this cycle; NovaTech's response time is the fastest in the program."
-                ]
-            },
-            "GreenAI": {
-                score: 90, rank: "#2", status: "Excellent",
-                response: 92, feedback: 89, offer: 90,
-                recs: [
-                    "Complete 1 pending interview feedback form.",
-                    "Offer confirmation time is slightly above average — confirming within 24h could raise this score."
-                ]
-            },
-            "MedLink": {
-                score: 88, rank: "#3", status: "Good",
-                response: 85, feedback: 90, offer: 88,
-                recs: [
-                    "Respond to 2 waiting candidates — average response time has slipped this cycle.",
-                    "Completing these actions may improve this Hiring Score by approximately 3 points."
-                ]
-            },
-            "BuildIQ": {
-                score: 87, rank: "#4", status: "Good",
-                response: 92, feedback: 80, offer: 89,
-                recs: [
-                    "Complete 3 pending interview feedback forms.",
-                    "Respond to candidate inquiries within 24h to avoid falling into the Needs Improvement range.",
-                    "Completing these actions may improve this Hiring Score by approximately 4 points."
-                ]
-            },
-            "TechFlow": {
-                score: 74, rank: "#5", status: "Needs Improvement",
-                response: 62, feedback: 71, offer: 76,
-                recs: [
-                    "Response time is well below the program average — 5 candidates have been waiting 3+ days.",
-                    "Complete 6 pending interview feedback forms.",
-                    "QSTP staff follow-up recommended before next cycle if this trend continues."
-                ]
-            }
-        };
+    "NovaTech": {
+        score: 91, rank: "#1", status: "Excellent",
+        response: 93, feedback: 90, offer: 90,
+        pipeline: { Nominated: 1, Interviewed: 2, Offer: 1, Onboarded: 3 },
+        recs: [
+            "No overdue interview feedback — keep it up.",
+            "Consider mentoring a lower-scoring startup this cycle; NovaTech's response time is the fastest in the program."
+        ]
+    },
+    "GreenAI": {
+        score: 90, rank: "#2", status: "Excellent",
+        response: 92, feedback: 89, offer: 90,
+        pipeline: { Nominated: 2, Interviewed: 1, Offer: 2, Onboarded: 2 },
+        recs: [
+            "Complete 1 pending interview feedback form.",
+            "Offer confirmation time is slightly above average — confirming within 24h could raise this score."
+        ]
+    },
+    "MedLink": {
+        score: 88, rank: "#3", status: "Good",
+        response: 85, feedback: 90, offer: 88,
+        pipeline: { Nominated: 1, Interviewed: 2, Offer: 1, Onboarded: 2 },
+        recs: [
+            "Respond to 2 waiting candidates — average response time has slipped this cycle.",
+            "Completing these actions may improve this Hiring Score by approximately 3 points."
+        ]
+    },
+    "BuildIQ": {
+        score: 87, rank: "#4", status: "Good",
+        response: 92, feedback: 80, offer: 89,
+        pipeline: { Nominated: 2, Interviewed: 3, Offer: 0, Onboarded: 1 },
+        recs: [
+            "Complete 3 pending interview feedback forms.",
+            "Respond to candidate inquiries within 24h to avoid falling into the Needs Improvement range.",
+            "Completing these actions may improve this Hiring Score by approximately 4 points."
+        ]
+    },
+    "TechFlow": {
+        score: 74, rank: "#5", status: "Needs Improvement",
+        response: 62, feedback: 71, offer: 76,
+        pipeline: { Nominated: 3, Interviewed: 1, Offer: 1, Onboarded: 0 },
+        recs: [
+            "Response time is well below the program average — 5 candidates have been waiting 3+ days.",
+            "Complete 6 pending interview feedback forms.",
+            "QSTP staff follow-up recommended before next cycle if this trend continues."
+        ]
+    }
+};
 
         function getParam(name) {
             return new URLSearchParams(window.location.search).get(name);
@@ -211,6 +228,16 @@
             document.getElementById("bdResponse").textContent = data.response;
             document.getElementById("bdFeedback").textContent = data.feedback;
             document.getElementById("bdOffer").textContent = data.offer;
+
+            const stageList = document.getElementById("pipelineStages");
+            stageList.innerHTML = "";
+            const stageOrder = ["Nominated", "Interviewed", "Offer", "Onboarded"];
+            stageOrder.forEach(stage => {
+                const row = document.createElement("div");
+                row.className = "pipeline-stage-row";
+                row.innerHTML = `<span class="pipeline-stage-label">${stage}</span><span class="pipeline-stage-count">${data.pipeline[stage]}</span>`;
+                stageList.appendChild(row);
+            });
 
             const recList = document.getElementById("recList");
             recList.innerHTML = "";
