@@ -31,13 +31,12 @@
       <a class="nav-item active" href="#" aria-current="page">Dashboard</a>
       <a class="nav-item" href="pipeline.html">Pipeline</a>
       <a class="nav-item" href="feedback.html">Feedback</a>
-      <a class="nav-item" href="../HTML/score.html">Reports</a>
     </nav>
 
     <div class="sidebar-footer">
       <span class="avatar">SA</span>
       <div class="sidebar-footer-text">
-        <div class="sidebar-footer-name startupName">startup</div>
+        <div class="sidebar-footer-name ">startup account</div>
         <div class="sidebar-footer-role">Talent Team</div>
       </div>
     </div>
@@ -48,15 +47,10 @@
 
     <div class="page-header">
       <div>
-    <h1 class="page-title">Dashboard</h1>
-
-    <div class="sidebar-footer-name startupName">
-        Startup
-    </div>
+    <h1 class="page-title">Startup Dashboard</h1>
 
     <p class="page-subtitle">
-        Welcome back,
-        <span class="startupName">Startup</span>
+       Track your hiring performance
     </p>
 </div>
       <a href="../HTML/pipeline.html">
@@ -84,7 +78,7 @@
         <dl class="score-stat-row">
           <div class="score-stat">
             <dt>Program average</dt>
-            <dd>79</dd>
+            <dd>86</dd>
           </div>
           <div class="score-stat">
             <dt>Ranking</dt>
@@ -125,17 +119,6 @@
   </main>
 </div>
 
-<script>
-const username = localStorage.getItem("username");
-
-if (username) {
-    const formatted = username.charAt(0).toUpperCase() + username.slice(1);
-
-    document.querySelectorAll(".startupName").forEach(el => {
-        el.textContent = formatted;
-    });
-}
-</script>
 
 </body>
 </html>
