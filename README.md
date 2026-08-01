@@ -33,7 +33,7 @@ No `npm install`, no server, no setup. Just open the HTML file.
 | Score Breakdown | `HTML/score.html` | Startups | A startup's own Hiring Health Score and how to improve it |
 | QSTP Dashboard | `HTML/qstp-dashboard.html` | QSTP staff | Leaderboard ranking all startups by Hiring Health Score |
 | Startup Details | `HTML/startup-details.html` | QSTP staff | Drill-down into one startup's score breakdown, reached via "View Details" on the QSTP Dashboard |
-| Program Impact Report | `HTML/reports.html` | QSTP staff | Program-wide metrics: avg. time-to-hire, time saved, rejection reason breakdown, duplicate conflicts caught |
+| Program Impact Report (Future work) | `HTML/reports.html` | QSTP staff | Program-wide metrics: avg. time-to-hire, time saved, rejection reason breakdown, duplicate conflicts caught |
 
 ---
 
@@ -43,7 +43,7 @@ No `npm install`, no server, no setup. Just open the HTML file.
 2. **Hiring Health Score** — scores each startup on responsiveness, feedback completion, offer speed, and onboarding completion
 3. **AI Smart Rejection Assistant** — reads the job description, suggests specific rejection reasons, drafts and sends a respectful message in one click
 4. **Duplicate Acceptance Detection** — flags QSTP staff (only) if a candidate has accepted two active QSTP-linked offers at once
-5. **Program Impact Report** — proves the tool's impact with real metrics: time-to-hire, time saved, rejection reasons, conflicts caught
+5. **Program Impact Report (Future work)** — proves the tool's impact with real metrics: time-to-hire, time saved, rejection reasons, conflicts caught
 
 ---
 
