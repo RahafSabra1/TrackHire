@@ -1,217 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrackHire — Startup Details</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../CSS/style.css">
-<link rel="stylesheet" href="../CSS/score.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackHire — Startup Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/score.css">
 </head>
+
 <body>
 
-<div class="shell">
+    <div class="shell">
 
-  <!-- SIDEBAR — QSTP staff persona, same as qstp-dashboard.html -->
-  <aside class="sidebar">
-    <div class="brand">
-      <span class="brand-mark">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 12L10 18L20 6" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </span>
-      <span class="brand-name">TrackHire</span>
+        <!-- SIDEBAR — QSTP staff persona, same as qstp-dashboard.html -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-mark">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 12L10 18L20 6" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </span>
+                <span class="brand-name">TrackHire</span>
+            </div>
+
+            <nav class="nav" aria-label="Primary">
+                <a class="nav-item" href="qstp-dashboard.html">Dashboard</a>
+                <a class="nav-item active" href="startup-details.html" aria-current="page">Details</a>
+                <a class="nav-item">Reports</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="avatar">QS</span>
+                <div class="sidebar-footer-text">
+                    <div class="sidebar-footer-name">QSTP Staff</div>
+                    <div class="sidebar-footer-role">Program Team</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main">
+
+            <a class="breadcrumb" href="qstp-dashboard.html">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                Back to QSTP Dashboard
+            </a>
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title" id="startupTitle">Startup Details</h1>
+                    <p class="page-subtitle" id="startupSubtitle">Understand how this startup's Hiring Score is
+                        calculated.</p>
+                </div>
+            </div>
+
+            <!-- HIRING SCORE -->
+            <section class="score-card" aria-label="Hiring score">
+                <div class="score-primary">
+                    <div class="score-eyebrow">Hiring Score</div>
+                    <p class="score-number" id="scoreNumber">—</p>
+                    <span class="score-badge" id="scoreBadge">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 4v16M6 10l6-6 6 6" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span id="scoreBadgeText">—</span>
+                    </span>
+                </div>
+
+                <div class="score-divider"></div>
+
+                <div class="score-meta">
+                    <dl class="score-stat-row">
+                        <div class="score-stat">
+                            <dt>Program average</dt>
+                            <dd>86</dd>
+                        </div>
+                        <div class="score-stat">
+                            <dt>Rank</dt>
+                            <dd id="scoreRank">—</dd>
+                        </div>
+                    </dl>
+                </div>
+            </section>
+
+            <!-- SCORE BREAKDOWN -->
+            <section class="section" aria-label="Score breakdown">
+                <h2 class="section-title">Score Breakdown</h2>
+
+                <div class="breakdown-list">
+                    <article class="breakdown-row">
+                        <div class="breakdown-info">
+                            <h3 class="breakdown-name">Response Time</h3>
+                            <p class="breakdown-desc">Average response time to candidates.</p>
+                        </div>
+                        <div class="breakdown-score"><span id="bdResponse">—</span><span>/100</span></div>
+                    </article>
+
+                    <article class="breakdown-row">
+                        <div class="breakdown-info">
+                            <h3 class="breakdown-name">Interview Feedback</h3>
+                            <p class="breakdown-desc">Percentage of completed interview feedback.</p>
+                        </div>
+                        <div class="breakdown-score"><span id="bdFeedback">—</span><span>/100</span></div>
+                    </article>
+
+                    <article class="breakdown-row">
+                        <div class="breakdown-info">
+                            <h3 class="breakdown-name">Offer &amp; Onboarding</h3>
+                            <p class="breakdown-desc">Offer acceptance and onboarding completion.</p>
+                        </div>
+                        <div class="breakdown-score"><span id="bdOffer">—</span><span>/100</span></div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- AI RECOMMENDATIONS -->
+            <section class="section" aria-label="AI recommendations">
+                <h2 class="section-title">AI Recommendations</h2>
+                <div class="rec-list" id="recList"></div>
+            </section>
+
+        </main>
     </div>
 
-    <nav class="nav" aria-label="Primary">
-      <a class="nav-item" href="qstp-dashboard.html">Dashboard</a>
-      <a class="nav-item active" href="startup-details.html" aria-current="page">Reports</a>
-    </nav>
+    <script>
+        /* ---------------------------------------------------
+           MOCK DATA — same 5 startups shown on qstp-dashboard.html.
+           No backend: this page reads ?startup=NAME from the URL
+           and looks the name up here.
+        --------------------------------------------------- */
+        const STARTUPS = {
+            "NovaTech": {
+                score: 91, rank: "#1", status: "Excellent",
+                response: 93, feedback: 90, offer: 90,
+                recs: [
+                    "No overdue interview feedback — keep it up.",
+                    "Consider mentoring a lower-scoring startup this cycle; NovaTech's response time is the fastest in the program."
+                ]
+            },
+            "GreenAI": {
+                score: 90, rank: "#2", status: "Excellent",
+                response: 92, feedback: 89, offer: 90,
+                recs: [
+                    "Complete 1 pending interview feedback form.",
+                    "Offer confirmation time is slightly above average — confirming within 24h could raise this score."
+                ]
+            },
+            "MedLink": {
+                score: 88, rank: "#3", status: "Good",
+                response: 85, feedback: 90, offer: 88,
+                recs: [
+                    "Respond to 2 waiting candidates — average response time has slipped this cycle.",
+                    "Completing these actions may improve this Hiring Score by approximately 3 points."
+                ]
+            },
+            "BuildIQ": {
+                score: 87, rank: "#4", status: "Good",
+                response: 92, feedback: 80, offer: 89,
+                recs: [
+                    "Complete 3 pending interview feedback forms.",
+                    "Respond to candidate inquiries within 24h to avoid falling into the Needs Improvement range.",
+                    "Completing these actions may improve this Hiring Score by approximately 4 points."
+                ]
+            },
+            "TechFlow": {
+                score: 74, rank: "#5", status: "Needs Improvement",
+                response: 62, feedback: 71, offer: 76,
+                recs: [
+                    "Response time is well below the program average — 5 candidates have been waiting 3+ days.",
+                    "Complete 6 pending interview feedback forms.",
+                    "QSTP staff follow-up recommended before next cycle if this trend continues."
+                ]
+            }
+        };
 
-    <div class="sidebar-footer">
-      <span class="avatar">QS</span>
-      <div class="sidebar-footer-text">
-        <div class="sidebar-footer-name">QSTP Staff</div>
-        <div class="sidebar-footer-role">Program Team</div>
-      </div>
-    </div>
-  </aside>
+        function getParam(name) {
+            return new URLSearchParams(window.location.search).get(name);
+        }
 
-  <!-- MAIN -->
-  <main class="main">
+        function render() {
+            const name = getParam("startup") || "NovaTech";
+            const data = STARTUPS[name] || STARTUPS["NovaTech"];
 
-    <a class="breadcrumb" href="qstp-dashboard.html">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Back to QSTP Dashboard
-    </a>
+            document.getElementById("startupTitle").textContent = name;
+            document.getElementById("startupSubtitle").textContent =
+                `Understand how ${name}'s Hiring Score is calculated.`;
 
-    <div class="page-header">
-      <div>
-        <h1 class="page-title" id="startupTitle">Startup Details</h1>
-        <p class="page-subtitle" id="startupSubtitle">Understand how this startup's Hiring Score is calculated.</p>
-      </div>
-    </div>
+            document.getElementById("scoreNumber").textContent = data.score;
+            document.getElementById("scoreRank").textContent = data.rank;
 
-    <!-- HIRING SCORE -->
-    <section class="score-card" aria-label="Hiring score">
-      <div class="score-primary">
-        <div class="score-eyebrow">Hiring Score</div>
-        <p class="score-number" id="scoreNumber">—</p>
-        <span class="score-badge" id="scoreBadge">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M6 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span id="scoreBadgeText">—</span>
-        </span>
-      </div>
+            const badgeText = document.getElementById("scoreBadgeText");
+            const badge = document.getElementById("scoreBadge");
+            if (data.status === "Needs Improvement") {
+                badgeText.textContent = "Below Program Average";
+                badge.classList.add("warning");
+            } else {
+                badgeText.textContent = "Above Program Average";
+            }
 
-      <div class="score-divider"></div>
+            document.getElementById("bdResponse").textContent = data.response;
+            document.getElementById("bdFeedback").textContent = data.feedback;
+            document.getElementById("bdOffer").textContent = data.offer;
 
-      <div class="score-meta">
-        <dl class="score-stat-row">
-          <div class="score-stat">
-            <dt>Program average</dt>
-            <dd>86</dd>
-          </div>
-          <div class="score-stat">
-            <dt>Rank</dt>
-            <dd id="scoreRank">—</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
+            const recList = document.getElementById("recList");
+            recList.innerHTML = "";
+            data.recs.forEach((text, i) => {
+                const div = document.createElement("div");
+                div.className = "rec-card" + (i === data.recs.length - 1 ? " highlight" : "");
+                div.innerHTML = `<p class="rec-text">${text}</p>`;
+                recList.appendChild(div);
+            });
+        }
 
-    <!-- SCORE BREAKDOWN -->
-    <section class="section" aria-label="Score breakdown">
-      <h2 class="section-title">Score Breakdown</h2>
-
-      <div class="breakdown-list">
-        <article class="breakdown-row">
-          <div class="breakdown-info">
-            <h3 class="breakdown-name">Response Time</h3>
-            <p class="breakdown-desc">Average response time to candidates.</p>
-          </div>
-          <div class="breakdown-score"><span id="bdResponse">—</span><span>/100</span></div>
-        </article>
-
-        <article class="breakdown-row">
-          <div class="breakdown-info">
-            <h3 class="breakdown-name">Interview Feedback</h3>
-            <p class="breakdown-desc">Percentage of completed interview feedback.</p>
-          </div>
-          <div class="breakdown-score"><span id="bdFeedback">—</span><span>/100</span></div>
-        </article>
-
-        <article class="breakdown-row">
-          <div class="breakdown-info">
-            <h3 class="breakdown-name">Offer &amp; Onboarding</h3>
-            <p class="breakdown-desc">Offer acceptance and onboarding completion.</p>
-          </div>
-          <div class="breakdown-score"><span id="bdOffer">—</span><span>/100</span></div>
-        </article>
-      </div>
-    </section>
-
-    <!-- AI RECOMMENDATIONS -->
-    <section class="section" aria-label="AI recommendations">
-      <h2 class="section-title">AI Recommendations</h2>
-      <div class="rec-list" id="recList"></div>
-    </section>
-
-  </main>
-</div>
-
-<script>
-/* ---------------------------------------------------
-   MOCK DATA — same 5 startups shown on qstp-dashboard.html.
-   No backend: this page reads ?startup=NAME from the URL
-   and looks the name up here.
---------------------------------------------------- */
-const STARTUPS = {
-  "NovaTech": {
-    score: 91, rank: "#1", status: "Excellent",
-    response: 93, feedback: 90, offer: 90,
-    recs: [
-      "No overdue interview feedback — keep it up.",
-      "Consider mentoring a lower-scoring startup this cycle; NovaTech's response time is the fastest in the program."
-    ]
-  },
-  "GreenAI": {
-    score: 90, rank: "#2", status: "Excellent",
-    response: 92, feedback: 89, offer: 90,
-    recs: [
-      "Complete 1 pending interview feedback form.",
-      "Offer confirmation time is slightly above average — confirming within 24h could raise this score."
-    ]
-  },
-  "MedLink": {
-    score: 88, rank: "#3", status: "Good",
-    response: 85, feedback: 90, offer: 88,
-    recs: [
-      "Respond to 2 waiting candidates — average response time has slipped this cycle.",
-      "Completing these actions may improve this Hiring Score by approximately 3 points."
-    ]
-  },
-  "BuildIQ": {
-    score: 87, rank: "#4", status: "Good",
-    response: 92, feedback: 80, offer: 89,
-    recs: [
-      "Complete 3 pending interview feedback forms.",
-      "Respond to candidate inquiries within 24h to avoid falling into the Needs Improvement range.",
-      "Completing these actions may improve this Hiring Score by approximately 4 points."
-    ]
-  },
-  "TechFlow": {
-    score: 74, rank: "#5", status: "Needs Improvement",
-    response: 62, feedback: 71, offer: 76,
-    recs: [
-      "Response time is well below the program average — 5 candidates have been waiting 3+ days.",
-      "Complete 6 pending interview feedback forms.",
-      "QSTP staff follow-up recommended before next cycle if this trend continues."
-    ]
-  }
-};
-
-function getParam(name) {
-  return new URLSearchParams(window.location.search).get(name);
-}
-
-function render() {
-  const name = getParam("startup") || "NovaTech";
-  const data = STARTUPS[name] || STARTUPS["NovaTech"];
-
-  document.getElementById("startupTitle").textContent = name;
-  document.getElementById("startupSubtitle").textContent =
-    `Understand how ${name}'s Hiring Score is calculated.`;
-
-  document.getElementById("scoreNumber").textContent = data.score;
-  document.getElementById("scoreRank").textContent = data.rank;
-
-  const badgeText = document.getElementById("scoreBadgeText");
-  const badge = document.getElementById("scoreBadge");
-  if (data.status === "Needs Improvement") {
-    badgeText.textContent = "Below Program Average";
-    badge.classList.add("warning");
-  } else {
-    badgeText.textContent = "Above Program Average";
-  }
-
-  document.getElementById("bdResponse").textContent = data.response;
-  document.getElementById("bdFeedback").textContent = data.feedback;
-  document.getElementById("bdOffer").textContent = data.offer;
-
-  const recList = document.getElementById("recList");
-  recList.innerHTML = "";
-  data.recs.forEach((text, i) => {
-    const div = document.createElement("div");
-    div.className = "rec-card" + (i === data.recs.length - 1 ? " highlight" : "");
-    div.innerHTML = `<p class="rec-text">${text}</p>`;
-    recList.appendChild(div);
-  });
-}
-
-render();
-</script>
+        render();
+    </script>
 
 </body>
+
 </html>

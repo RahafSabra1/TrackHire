@@ -1,223 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TrackHire — QSTP Dashboard</title>
+    <title>TrackHire — QSTP Dashboard</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
 
-<link rel="stylesheet" href="../CSS/style.css">
-<link rel="stylesheet" href="../CSS/qstp-dashboard.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/qstp-dashboard.css">
 
 </head>
+
 <body>
 
-<div class="shell">
+    <div class="shell">
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
+        <!-- Sidebar -->
+        <aside class="sidebar">
 
-        <div class="brand">
-            <span class="brand-mark">
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M4 12L10 18L20 6"
-                          stroke="#fff"
-                          stroke-width="2.6"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"/>
-                </svg>
-            </span>
+            <div class="brand">
+                <span class="brand-mark">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M4 12L10 18L20 6" stroke="#fff" stroke-width="2.6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </span>
 
-            <span class="brand-name">
-                TrackHire
-            </span>
-        </div>
+                <span class="brand-name">
+                    TrackHire
+                </span>
+            </div>
 
-        <nav class="nav">
+            <nav class="nav">
 
-            <a href="" class="nav-item active">
-                Dashboard
-            </a>
+                <a href="../HTML/qstp-dashboard.html" class="nav-item active">
+                    Dashboard
+                </a>
 
-            <a href="" class="nav-item">
-                Reports
-            </a>
+                <a href="../HTML/startup-details.html" class="nav-item">
+                    Details
+                </a>
 
-        </nav>
+                <a class="nav-item">
+                    Reports
+                </a>
 
-    </aside>
+            </nav>
 
-    <!-- Main -->
+        </aside>
 
-    <main class="main">
+        <!-- Main -->
 
-        <div class="page-header">
+        <main class="main">
 
-            <div>
+            <div class="page-header">
 
-                <h1 class="page-title">
-                    QSTP Dashboard
-                </h1>
+                <div>
 
-                <p class="page-subtitle">
-                    Monitor startup hiring performance across the program.
-                </p>
+                    <h1 class="page-title">
+                        QSTP Dashboard
+                    </h1>
+
+                    <p class="page-subtitle">
+                        Monitor startup hiring performance across the program.
+                    </p>
+
+                </div>
 
             </div>
 
-        </div>
+            <!-- Summary Cards -->
 
-        <!-- Summary Cards -->
+            <section class="stat-grid">
 
-        <section class="stat-grid">
+                <article class="stat-card">
+                    <div class="stat-label">
+                        Total Startups
+                    </div>
 
-            <article class="stat-card">
-                <div class="stat-label">
-                    Total Startups
+                    <div class="stat-value">
+                        5
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-label">
+                        Average Hiring Score
+                    </div>
+
+                    <div class="stat-value">
+                        86
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-label">
+                        Highest Hiring Score
+                    </div>
+
+                    <div class="stat-value">
+                        95
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-label">
+                        Lowest Hiring Score
+                    </div>
+
+                    <div class="stat-value">
+                        74
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- Rankings -->
+
+            <section class="table-section">
+
+                <div class="section-header">
+
+                    <h2>
+                        Startup Rankings
+                    </h2>
+
                 </div>
 
-                <div class="stat-value">
-                    5
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Rank</th>
+                                <th>Startup</th>
+                                <th>Hiring Score</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>1</td>
+                                <td>NovaTech</td>
+                                <td>91</td>
+                                <td><span class="status excellent">Excellent</span></td>
+                                <td>
+                                    <a href="startup-details.html?startup=NovaTech" class="table-link">
+                                        View Details
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td>GreenAI</td>
+                                <td>90</td>
+                                <td><span class="status excellent">Excellent</span></td>
+                                <td>
+                                    <a href="startup-details.html?startup=GreenAI" class="table-link">
+                                        View Details
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>3</td>
+                                <td>MedLink</td>
+                                <td>88</td>
+                                <td><span class="status good">Good</span></td>
+                                <td>
+                                    <a href="startup-details.html?startup=MedLink" class="table-link">
+                                        View Details
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>4</td>
+                                <td>BuildIQ</td>
+                                <td>87</td>
+                                <td><span class="status good">Good</span></td>
+                                <td>
+                                    <a href="startup-details.html?startup=BuildIQ" class="table-link">
+                                        View Details
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>5</td>
+                                <td>TechFlow</td>
+                                <td>74</td>
+                                <td><span class="status needs-improvement">Needs Improvement</span></td>
+                                <td>
+                                    <a href="startup-details.html?startup=TechFlow" class="table-link">
+                                        View Details
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
                 </div>
-            </article>
 
-            <article class="stat-card">
-                <div class="stat-label">
-                    Average Hiring Score
-                </div>
+            </section>
 
-                <div class="stat-value">
-                    86
-                </div>
-            </article>
+        </main>
 
-            <article class="stat-card">
-                <div class="stat-label">
-                    Highest Hiring Score
-                </div>
-
-                <div class="stat-value">
-                    95
-                </div>
-            </article>
-
-            <article class="stat-card">
-                <div class="stat-label">
-                    Lowest Hiring Score
-                </div>
-
-                <div class="stat-value">
-                    74
-                </div>
-            </article>
-
-        </section>
-
-        <!-- Rankings -->
-
-        <section class="table-section">
-
-            <div class="section-header">
-
-                <h2>
-                    Startup Rankings
-                </h2>
-
-            </div>
-
-            <div class="table-wrapper">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>Rank</th>
-                            <th>Startup</th>
-                            <th>Hiring Score</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-                            <td>1</td>
-                            <td>NovaTech</td>
-                            <td>91</td>
-                            <td><span class="status excellent">Excellent</span></td>
-                            <td>
-                                <a href="startup-details.html?startup=NovaTech" class="table-link">
-                                    View Details
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>2</td>
-                            <td>GreenAI</td>
-                            <td>90</td>
-                            <td><span class="status excellent">Excellent</span></td>
-                            <td>
-                                <a href="startup-details.html?startup=GreenAI" class="table-link">
-                                    View Details
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>3</td>
-                            <td>MedLink</td>
-                            <td>88</td>
-                            <td><span class="status good">Good</span></td>
-                            <td>
-                                <a href="startup-details.html?startup=MedLink" class="table-link">
-                                    View Details
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>4</td>
-                            <td>BuildIQ</td>
-                            <td>87</td>
-                            <td><span class="status good">Good</span></td>
-                            <td>
-                                <a href="startup-details.html?startup=BuildIQ" class="table-link">
-                                    View Details
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>5</td>
-                            <td>TechFlow</td>
-                            <td>74</td>
-                            <td><span class="status needs-improvement">Needs Improvement</span></td>
-                            <td>
-                                <a href="startup-details.html?startup=TechFlow" class="table-link">
-                                    View Details
-                                </a>
-                            </td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </section>
-
-    </main>
-
-</div>
+    </div>
 
 </body>
+
 </html>
