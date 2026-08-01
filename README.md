@@ -2,7 +2,7 @@
 
 **A shared hiring pipeline for QSTP internships — built for the "Build for QSTP" Internship Program Challenge (Challenge 3: Hiring Funnel Black Box).**
 
-TrackHire replaces informal WhatsApp/email hiring updates with one shared board, tracking every candidate from Nomination through Interview, Offer, and Onboarding — while adding three intelligent layers: a Hiring Health Score for startup accountability, an AI Rejection Assistant that closes the feedback loop, and Duplicate Acceptance Detection to protect fairness across the program.
+TrackHire replaces informal WhatsApp/email hiring updates with one shared board, tracking every candidate from Nomination through Interview, Offer, and Onboarding — while adding three intelligent layers: a Hiring Score for startup accountability, an AI Rejection Assistant that closes the feedback loop, and Duplicate Acceptance Detection to protect fairness across the program.
 
 ---
 
@@ -30,8 +30,8 @@ No `npm install`, no server, no setup. Just open the HTML file.
 | Startup Dashboard | `HTML/startup-dashboard.html` | Startups | Startup's own job posting + quick links |
 | Pipeline Board | `HTML/pipeline.html` | Startups & QSTP staff | Kanban-style candidate tracker: Nominated → Interviewed → Offer → Onboarded, with stall detection and search |
 | Feedback / Rejection Assistant | `HTML/feedback.html` | Startups | AI-suggested rejection reasons based on the job description, one-click send |
-| Score Breakdown | `HTML/score.html` | Startups | A startup's own Hiring Health Score and how to improve it |
-| QSTP Dashboard | `HTML/qstp-dashboard.html` | QSTP staff | Leaderboard ranking all startups by Hiring Health Score |
+| Score Breakdown | `HTML/score.html` | Startups | A startup's own Hiring Score and how to improve it |
+| QSTP Dashboard | `HTML/qstp-dashboard.html` | QSTP staff | Leaderboard ranking all startups by Hiring Score |
 | Startup Details | `HTML/startup-details.html` | QSTP staff | Drill-down into one startup's score breakdown, reached via "View Details" on the QSTP Dashboard |
 | Program Impact Report (Future work) | `HTML/reports.html` | QSTP staff | Program-wide metrics: avg. time-to-hire, time saved, rejection reason breakdown, duplicate conflicts caught |
 
