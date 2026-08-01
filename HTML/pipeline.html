@@ -106,6 +106,56 @@
   </div>
 </div>
 
+<!-- DOCUMENTS & SIGNATURES DRAWER -->
+<div class="drawer-overlay" id="docsOverlay" onclick="if(event.target===this) closeDocsDrawer()">
+  <aside class="drawer" id="docsDrawer" role="dialog" aria-label="Documents and signatures">
+
+    <div class="drawer-header">
+      <h2 class="drawer-title">Documents &amp; Signatures</h2>
+      <button class="drawer-close" type="button" onclick="closeDocsDrawer()" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- CANDIDATE -->
+    <section class="drawer-section drawer-candidate">
+      <div class="drawer-candidate-info">
+        <h3 class="drawer-candidate-name" id="docsName">—</h3>
+        <p class="drawer-candidate-meta"><span id="docsPosition">—</span> · <span id="docsStartup">—</span></p>
+      </div>
+      <span class="candidate-status-badge" id="docsCandidateStatus">—</span>
+    </section>
+
+    <!-- DOCUMENTS -->
+    <section class="drawer-section">
+      <h4 class="drawer-section-title">Documents</h4>
+      <div class="doc-list" id="docsList"><!-- injected --></div>
+    </section>
+
+    <!-- AUTOMATIC FOLLOW-UP -->
+    <section class="drawer-section">
+      <h4 class="drawer-section-title">Automatic Follow-up</h4>
+      <div class="followup-panel">
+        <div class="followup-timeline" id="docsTimeline"><!-- injected --></div>
+        <p class="followup-note">Automatic reminders continue until all required documents are signed.</p>
+      </div>
+    </section>
+
+    <!-- DEADLINE -->
+    <section class="drawer-section drawer-deadline-row">
+      <span class="drawer-deadline-label">Deadline</span>
+      <span class="drawer-deadline-value" id="docsDeadline">—</span>
+    </section>
+
+    <!-- OVERALL STATUS -->
+    <section class="drawer-section drawer-overall" id="docsOverallWrap">
+      <svg viewBox="0 0 24 24" fill="none" id="docsOverallIcon"><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
+      <span id="docsOverallText">—</span>
+    </section>
+
+  </aside>
+</div>
+
 <script>
 /* ---------------------------------------------------
    MOCK DATA — no backend, everything lives in the browser.
@@ -201,6 +251,10 @@ function renderCard(c) {
       ${!isLast ? `<button class="btn-secondary btn-sm" type="button" onclick="advance(${c.id})">${c.stage === "Offer" ? "Mark accepted" : "Move forward"}</button>` : `<span class="onboarded-tag">Onboarded</span>`}
       ${c.stage !== "Onboarded" ? `<a class="reject-link" href="feedback.html">Reject →</a>` : ""}
     </div>
+    ${c.stage === "Onboarded" ? `<button class="docs-trigger" type="button" onclick="openDocsDrawer(${c.id})">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M9 12h6M9 16h6M9 8h1M7 21h10a2 2 0 0 0 2-2V7l-5-5H7a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Documents &amp; Signatures
+    </button>` : ""}
   `;
   return card;
 }
@@ -256,6 +310,111 @@ function closeConflict() {
   document.getElementById('conflictOverlay').classList.remove('show');
   pendingCandidateId = null;
 }
+
+/* ---------------------------------------------------
+   DOCUMENTS & SIGNATURES DRAWER
+   Mock reminder data per candidate — no backend, this
+   mirrors what the automatic reminder logic would produce:
+   1) onboarding package sent the moment a candidate lands
+      in "Onboarded"
+   2) Reminder #1 auto-sends if something is still unsigned
+      48h later
+   3) a Final Reminder auto-sends 24h before the deadline
+      if anything is still pending
+   4) reminders stop the moment everything is signed
+--------------------------------------------------- */
+const DOCS_DATA = {
+  7: { // Sara Mansour
+    position: "Backend Intern — Data Platforms",
+    deadline: "August 5, 2026",
+    documents: [
+      { name: "Offer Letter", status: "sent" },
+      { name: "NDA", status: "signed" },
+      { name: "Internship Agreement", status: "pending" }
+    ],
+    timeline: [
+      { icon: "mail", text: "Onboarding package sent automatically", meta: "Sent • 5 days ago" },
+      { icon: "mail", text: "Reminder #1", meta: "Sent • Today, 10:00 AM" },
+      { icon: "calendar", text: "Next reminder", meta: "Tomorrow, 10:00 AM" }
+    ]
+  }
+};
+
+function docsAllSigned(doc) {
+  return doc.every(d => d.status === "signed");
+}
+
+function docBadge(status) {
+  const map = {
+    sent:    { label: "Sent",              cls: "sent" },
+    signed:  { label: "Signed",            cls: "signed" },
+    pending: { label: "Pending Signature", cls: "pending" }
+  };
+  return map[status] || map.pending;
+}
+
+function docIcon(name) {
+  // simple flat document icon, color set by CSS via currentColor
+  return `<svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+}
+
+function timelineIcon(kind) {
+  if (kind === "calendar") {
+    return `<svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+  }
+  return `<svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+}
+
+function openDocsDrawer(id) {
+  const c = candidates.find(x => x.id === id);
+  const data = DOCS_DATA[id];
+  if (!c || !data) return;
+
+  const allSigned = docsAllSigned(data.documents);
+
+  document.getElementById("docsName").textContent = c.name;
+  document.getElementById("docsPosition").textContent = data.position;
+  document.getElementById("docsStartup").textContent = c.startup;
+
+  const candidateStatus = document.getElementById("docsCandidateStatus");
+  candidateStatus.textContent = allSigned ? "Onboarding Complete" : "Waiting for Signature";
+  candidateStatus.className = "candidate-status-badge" + (allSigned ? " complete" : " waiting");
+
+  document.getElementById("docsList").innerHTML = data.documents.map(d => {
+    const b = docBadge(d.status);
+    return `
+      <div class="doc-row">
+        <div class="doc-row-left">
+          <span class="doc-icon">${docIcon(d.name)}</span>
+          <span class="doc-name">${d.name}</span>
+        </div>
+        <span class="doc-badge ${b.cls}">${b.label}</span>
+      </div>`;
+  }).join("");
+
+  document.getElementById("docsTimeline").innerHTML = data.timeline.map(t => `
+    <div class="timeline-row">
+      <span class="timeline-icon">${timelineIcon(t.icon)}</span>
+      <div class="timeline-text">
+        <span class="timeline-title">${t.text}</span>
+        <span class="timeline-meta">${t.meta}</span>
+      </div>
+    </div>`).join("");
+
+  document.getElementById("docsDeadline").textContent = data.deadline;
+
+  const overallWrap = document.getElementById("docsOverallWrap");
+  const overallText = document.getElementById("docsOverallText");
+  overallText.textContent = allSigned ? "Onboarding Complete" : "Waiting for candidate signature";
+  overallWrap.className = "drawer-section drawer-overall" + (allSigned ? " complete" : " waiting");
+
+  document.getElementById("docsOverlay").classList.add("show");
+}
+
+function closeDocsDrawer() {
+  document.getElementById("docsOverlay").classList.remove("show");
+}
+
 const params = new URLSearchParams(window.location.search);
 const dashboardLink = document.getElementById("dashboardLink");
 
