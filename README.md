@@ -58,4 +58,5 @@ No `npm install`, no server, no setup. Just open the HTML file.
 ## Team
 
 TrackHire — Rahaf, Sally, Shahd
+
 Built for the QSTP "Build for QSTP" Internship Program Challenge, July 2026.
