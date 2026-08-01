@@ -2,7 +2,7 @@
 
 **A shared hiring pipeline for QSTP internships — built for the "Build for QSTP" Internship Program Challenge (Challenge 3: Hiring Funnel Black Box).**
 
-TrackHire replaces informal WhatsApp/email hiring updates with one shared board, tracking every candidate from Nomination through Interview, Offer, and Onboarding — while adding three intelligent layers: a Hiring Score for startup accountability, an AI Hiring Assistant that closes the feedback loop, and Duplicate Acceptance Detection to protect fairness across the program.
+TrackHire is a shared hiring platform that replaces scattered WhatsApp and email updates with a single source of truth for QSTP and host startups. It combines a shared pipeline that tracks every candidate from Nomination through Interview, Offer, and Onboarding, a Hiring Score that promotes accountability, and an AI Smart Hiring Assistant that automates candidate communication, onboarding, and duplicate acceptance detection.
 
 ---
 
